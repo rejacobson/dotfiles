@@ -52,9 +52,6 @@ alias a='cd ~/Projects/asterion'
 alias psa='a; passenger start -p 3002'
 alias psj='j; passenger start'
 
-# Fink package manager
-test -r /sw/bin/init.sh && . /sw/bin/init.sh
-
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
 
