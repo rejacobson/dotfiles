@@ -1,0 +1,29 @@
+[core]
+  excludesfiles = /Users/rjacobson/.gitignore
+[user]
+	name = Ryan Jacobson
+	email = rjacobson@bravenet.com
+[alias]
+	co = checkout
+  todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
+[apply]
+	whitespace = nowarn
+[instaweb]
+	browser = /Applications/Firefox.app/Contents/MacOS/firefox-bin
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = green
+  changed = red
+  untracked = cyan
