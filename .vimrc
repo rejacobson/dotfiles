@@ -37,6 +37,9 @@ set incsearch   " Show matches as you type a search term
 set paste       " Retain tab and space indenting of pasted code
 set hidden      " Hide buffers instead of closing them.
 
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
 " Press Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 

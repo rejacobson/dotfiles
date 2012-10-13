@@ -8,15 +8,22 @@ fi
 ############################
 # Detect the OS
 ############################
-platform='unknown'
 uname=$(uname)
-if [[ "$uname" == 'Linux' ]]; then
-  platform='linux'
-elif [[ "$uname" == 'Darwin' ]]; then
-  platform='osx'
-fi
-if [[ "$platform" == 'unknown' ]]; then
-  echo "OS is unknown: $uname"
+case "$uname" in
+   CYGWIN*) platform='cygwin' ;;
+   Linux*) platform='linux' ;;
+   Darwin*) platform='osx' ;;
+   *)       platform='unknown' ;;
+esac
+echo "OS is: $platform"
+
+if [[ "$platform" == 'cygwin' ]]; then
+  SSHAGENT=/usr/bin/ssh-agent
+  SSHAGENTARGS="-s"
+  if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
+    eval `$SSHAGENT $SSHAGENTARGS`
+    trap "kill $SSH_AGENT_PID" 0
+  fi
 fi
 
 ############################
