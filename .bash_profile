@@ -44,7 +44,7 @@ export PS1="\n\[${txtgrn}\]\w \[${txtpur}\]\$(parse_git_branch) \[${txtrst}\]\n\
 ###########################
 # Aliases
 ###########################
-alias la='ls -AlFhG'
+alias la='ls -AlFhG --color'
 alias wget='curl -O'
 alias j='cd ~/Projects/jigsy'
 alias a='cd ~/Projects/asterion'
