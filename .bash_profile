@@ -29,7 +29,7 @@ fi
 ############################
 # Include Additional Scripts
 ############################
-for f in ~/dotfiles/inc/*.bash; do
+for f in ~/dotfiles/bash/*.bash; do
   echo "Including bash script: $f"
   . $f
 done
@@ -51,7 +51,11 @@ export PS1="\n\[${txtgrn}\]\w \[${txtpur}\]\$(parse_git_branch) \[${txtrst}\]\n\
 ###########################
 # Aliases
 ###########################
-alias la='ls -AlFhG --color'
+if [[ "$platform" == 'osx' ]]; then
+  alias la='ls -AlFhG'
+else
+  alias la='ls -AlFh --color=always'
+fi
 alias wget='curl -O'
 alias j='cd ~/Projects/jigsy'
 alias a='cd ~/Projects/asterion'
