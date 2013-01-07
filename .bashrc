@@ -56,6 +56,10 @@ alias a='cd ~/Projects/asterion'
 alias psa='a; passenger start -p 3002'
 alias psj='j; passenger start'
 
+# Prevent pasting into a selection from overwriting the contents of the register
+# pgvy ==  'p' paste, 'gv' re-select what was originally selected, 'y' to copy it again
+xnoremap p pgvy
+
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
 
