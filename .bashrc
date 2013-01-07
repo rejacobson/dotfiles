@@ -30,6 +30,10 @@ done
 # Default editor
 export EDITOR='vim'
 
+export CLICOLOR=1
+
+export TERM=xterm-color
+
 # ls Colors; directories are bold blue: 'Ex'
 export LSCOLORS='Exfxcxdxbxegedabagacad'
 
