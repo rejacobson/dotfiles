@@ -47,3 +47,7 @@ set backspace=indent,eol,start
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+" Prevent pasting into a selection from overwriting the contents of the register
+" pgvy ==  'p' paste, 'gv' re-select what was originally selected, 'y' to copy it again
+xnoremap p pgvy
