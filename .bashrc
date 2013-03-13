@@ -27,6 +27,18 @@ for f in ~/dotfiles/bash/*.bash; do
   . $f
 done
 
+
+############################
+# Include Non Version
+# Controlled Scripts
+############################
+if [ -d ~/.bash ]; then
+  for f in ~/.bash/*; do
+    echo "Including additional bash script: $f"
+    . $f
+  done
+fi
+
 # Default editor
 export EDITOR='vim'
 
