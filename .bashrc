@@ -4,7 +4,7 @@
 uname=$(uname)
 case "$uname" in
    CYGWIN*) platform='cygwin' ;;
-   Linux*) platform='linux' ;;
+   Linux*)  platform='linux' ;;
    Darwin*) platform='osx' ;;
    *)       platform='unknown' ;;
 esac
@@ -18,6 +18,8 @@ if [[ "$platform" == 'cygwin' ]]; then
     trap "kill $SSH_AGENT_PID" 0
   fi
 fi
+
+ssh-add
 
 ############################
 # Include Additional Scripts
