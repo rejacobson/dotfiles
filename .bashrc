@@ -36,7 +36,7 @@ done
 ############################
 if [ -d ~/.bash ]; then
   for f in ~/.bash/*; do
-    echo "Including additional bash script: $f"
+    echo "Including bash script: $f"
     . $f
   done
 fi
