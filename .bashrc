@@ -76,6 +76,9 @@ alias a='cd ~/Projects/asterion'
 alias psa='a; passenger start -p 3002'
 alias psj='j; passenger start'
 
+
+PATH=/usr/local/bin:$PATH
+
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
 
