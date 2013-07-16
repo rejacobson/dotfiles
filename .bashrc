@@ -70,12 +70,6 @@ else
   alias la='ls -AlFh --color=always'
 fi
 alias wget='curl -O'
-alias j='cd ~/Projects/jigsy'
-alias a='cd ~/Projects/asterion'
-
-alias psa='a; passenger start -p 3002'
-alias psj='j; passenger start'
-
 
 PATH=/usr/local/bin:$PATH
 
