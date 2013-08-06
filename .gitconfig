@@ -1,5 +1,3 @@
-[core]
-  excludesfiles = /Users/rjacobson/.gitignore
 [user]
 	name = Ryan Jacobson
 	email = rjacobson@bravenet.com
@@ -8,8 +6,6 @@
   todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
 [apply]
 	whitespace = nowarn
-[instaweb]
-	browser = /Applications/Firefox.app/Contents/MacOS/firefox-bin
 [color]
   branch = auto
   diff = auto
