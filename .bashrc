@@ -19,7 +19,7 @@ if [[ "$platform" == 'cygwin' ]]; then
   fi
 fi
 
-if [[ "$platform" != 'osx' ]]; then
+if [[ "$platform" == 'cygwin' ]]; then
   ssh-add
 fi
 
