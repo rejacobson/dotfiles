@@ -51,3 +51,5 @@ set expandtab
 " Prevent pasting into a selection from overwriting the contents of the register
 " pgvy ==  'p' paste, 'gv' re-select what was originally selected, 'y' to copy it again
 xnoremap p pgvy
+
+let g:EasyMotion_leader_key = "'"
