@@ -52,4 +52,12 @@ set expandtab
 " pgvy ==  'p' paste, 'gv' re-select what was originally selected, 'y' to copy it again
 xnoremap p pgvy
 
+" Make trailing whitespace annoyingly highlighted.
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
 let g:EasyMotion_leader_key = "'"
