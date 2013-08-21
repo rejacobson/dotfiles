@@ -19,6 +19,8 @@ imap <left> <nop>
 imap <right> <nop>
 
 " Color scheme
+syntax on       " Turn on syntax highlighting
+set background=dark
 colorscheme dark-ruby
 
 " NERDTree
@@ -28,7 +30,6 @@ map <C-n> :NERDTree<CR>
 let NERDTreeMapActivateNode='<space>'
 
 " General Options
-syntax on       " Turn on syntax highlighting
 set number      " Show line numbers on the side
 set hlsearch    " Highlight all search pattern matches
 set showcmd     " Display info about the current command
@@ -36,6 +37,7 @@ set showmode    " Indicates input or replace mode at bottom
 set incsearch   " Show matches as you type a search term
 set paste       " Retain tab and space indenting of pasted code
 set hidden      " Hide buffers instead of closing them.
+set so=14
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
