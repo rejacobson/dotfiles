@@ -8,7 +8,6 @@ case "$uname" in
    Darwin*) platform='osx' ;;
    *)       platform='unknown' ;;
 esac
-echo "OS is: $platform"
 
 if [[ "$platform" == 'cygwin' ]]; then
   SSHAGENT=/usr/bin/ssh-agent
@@ -17,11 +16,14 @@ if [[ "$platform" == 'cygwin' ]]; then
     eval `$SSHAGENT $SSHAGENTARGS`
     trap "kill $SSH_AGENT_PID" 0
   fi
+  ssh-add
+elif [[ "$platform" == 'linux' ]]; then
+  if [ -z "$SSH_AGENT_PID" ]; then
+    exec ssh-agent $SHELL
+  fi  
 fi
 
-if [[ "$platform" == 'cygwin' ]]; then
-  ssh-add
-fi
+echo "OS is: $platform"
 
 ############################
 # Include Additional Scripts
@@ -42,6 +44,10 @@ if [ -d ~/.bash ]; then
     . $f
   done
 fi
+
+# Disable ctrl+s from sending XOFF
+stty ixany
+stty ixoff -ixon
 
 # Default editor
 export EDITOR='vim'
@@ -69,7 +75,6 @@ if [[ "$platform" == 'osx' ]]; then
 else
   alias la='ls -AlFh --color=always'
 fi
-alias wget='curl -O'
 
 PATH=/usr/local/bin:$PATH
 
