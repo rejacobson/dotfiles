@@ -20,7 +20,7 @@ if [[ "$platform" == 'cygwin' ]]; then
 elif [[ "$platform" == 'linux' ]]; then
   if [ -z "$SSH_AGENT_PID" ]; then
     exec ssh-agent $SHELL
-  fi  
+  fi
 fi
 
 echo "OS is: $platform"
@@ -65,7 +65,11 @@ function parse_git_branch {
 }
 
 # Shell Prompt
-export PS1="\n\[${txtgrn}\]\w \[${txtpur}\]\$(parse_git_branch) \[${txtrst}\]\n\u \[${txtylw}\]\t\[${txtrst}\] \$ "
+if [ $(id -u) -eq 0 ]; then
+  export PS1="\n\[${txtgrn}\]\w \[${txtpur}\]\$(parse_git_branch)\n\[\e[1;37;41m\] \u \[${txtrst}\]\[${txtylw}\]\t\[${txtrst}\] \$ "
+else
+  export PS1="\n\[${txtgrn}\]\w \[${txtpur}\]\$(parse_git_branch) \[${txtrst}\]\n\u \[${txtylw}\]\t\[${txtrst}\] \$ "
+fi
 
 ###########################
 # Aliases
