@@ -62,4 +62,4 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-let g:EasyMotion_leader_key = "'"
+let g:EasyMotion_leader_key = ","
