@@ -66,9 +66,9 @@ function parse_git_branch {
 
 # Shell Prompt
 if [ $(id -u) -eq 0 ]; then
-  export PS1="\n\[${txtgrn}\]\w \[${txtpur}\]\$(parse_git_branch)\n\[\e[1;37;41m\] \u \[${txtrst}\]\[${txtylw}\]\t\[${txtrst}\] \$ "
+  export PS1="\n\[${bldblu}\]\w \[${txtpur}\]\$(parse_git_branch)\n\[\e[1;37;41m\] \u \[${txtrst}\]\[${txtylw}\]\t\[${txtrst}\] \[${bldblk}\]>\[${txtgrn}\]>\[${bldgrn}\]>\[${txtrst}\] "
 else
-  export PS1="\n\[${txtgrn}\]\w \[${txtpur}\]\$(parse_git_branch) \[${txtrst}\]\n\u \[${txtylw}\]\t\[${txtrst}\] \$ "
+  export PS1="\n\[${bldblu}\]\w \[${txtpur}\]\$(parse_git_branch) \[${txtrst}\]\n\u \[${txtylw}\]\t\[${txtrst}\] \[${bldblk}\]>\[${txtgrn}\]>\[${bldgrn}\]>\[${txtrst}\] "
 fi
 
 ###########################
