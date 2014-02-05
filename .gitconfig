@@ -23,3 +23,7 @@
   added = green
   changed = red
   untracked = cyan
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.gitignore
