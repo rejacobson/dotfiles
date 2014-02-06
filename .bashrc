@@ -61,14 +61,22 @@ export LSCOLORS='Exfxcxdxbxegedabagacad'
 
 # Get the name of the current git branch
 function parse_git_branch {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 }
 
 # Shell Prompt
+export PROMPT_PWD="\[$bldblu\]\w\[$txtrst\]"
+export PROMPT_GIT_BRANCH="\[$txtred\]\$(parse_git_branch)\[$txtrst\]"
+export PROMPT_HOSTNAME="\[$bldblk\]\h\[$txtrst\]"
+export PROMPT_USER="\[$txtgrn\]\u"
+export PROMPT_ROOT_USER="\[\e[1;37;41m\] \u \[$txtrst\]"
+export END_OF_PROMPT_CHAR="\[\342\226\260\]"
+export END_OF_PROMPT="\[$bldblk\]$END_OF_PROMPT_CHAR\[$txtgrn\]$END_OF_PROMPT_CHAR\[$bldgrn\]$END_OF_PROMPT_CHAR\[$bldwht\]$END_OF_PROMPT_CHAR\[$txtrst\]"
+
 if [ $(id -u) -eq 0 ]; then
-  export PS1="\n\[${bldblu}\]\w \[${txtpur}\]\$(parse_git_branch)\n\[\e[1;37;41m\] \u \[${txtrst}\]\[${txtylw}\]\t\[${txtrst}\] \[${bldblk}\]>\[${txtgrn}\]>\[${bldgrn}\]>\[${txtrst}\] "
+  export PS1="\n$PROMPT_PWD $PROMPT_GIT_BRANCH \n$PROMPT_ROOT_USER $PROMPT_HOSTNAME $END_OF_PROMPT "
 else
-  export PS1="\n\[${bldblu}\]\w \[${txtpur}\]\$(parse_git_branch) \[${txtrst}\]\n\u \[${txtylw}\]\t\[${txtrst}\] \[${bldblk}\]>\[${txtgrn}\]>\[${bldgrn}\]>\[${txtrst}\] "
+  export PS1="\n$PROMPT_PWD $PROMPT_GIT_BRANCH \n$PROMPT_USER $PROMPT_HOSTNAME $END_OF_PROMPT "
 fi
 
 ###########################
