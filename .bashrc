@@ -61,7 +61,7 @@ export LSCOLORS='Exfxcxdxbxegedabagacad'
 
 # Get the name of the current git branch
 function parse_git_branch {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/▰ \1 ▰/'
 }
 
 # Shell Prompt
