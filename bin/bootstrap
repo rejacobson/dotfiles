@@ -5,17 +5,17 @@ FILES=(.bashrc .bash_profile .vimrc .vim .gitconfig)
 for file in ${FILES[*]}
 do
   dotfile="$HOME/dotfiles/$file"
-  symlink="$HOME/$file" 
+  symlink="$HOME/$file"
   backup="$HOME/${file}_BAK"
 
   echo "--- $file"
 
-  if [ -a $symlink ]; then
+  if [ -e $symlink ]; then
     echo "$file exists; Moving to $backup"
     mv $symlink $backup
   fi
 
-  if [ -a $dotfile ]; then
+  if [ -e $dotfile ]; then
     echo "Creating sym link: $dotfile -> $symlink"
     ln -s $dotfile $symlink
   else
