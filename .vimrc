@@ -21,7 +21,7 @@ imap <right> <nop>
 " Color scheme
 syntax on       " Turn on syntax highlighting
 set background=dark
-colorscheme vibrantink
+colorscheme dark-ruby
 
 " NERDTree
 map <C-l> :tabn<CR>
