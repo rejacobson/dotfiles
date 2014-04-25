@@ -9,22 +9,6 @@ case "$uname" in
    *)       platform='unknown' ;;
 esac
 
-if [[ "$platform" == 'cygwin' ]]; then
-  SSHAGENT=/usr/bin/ssh-agent
-  SSHAGENTARGS="-s"
-  if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
-    eval `$SSHAGENT $SSHAGENTARGS`
-    trap "kill $SSH_AGENT_PID" 0
-  fi
-  ssh-add
-elif [[ "$platform" == 'linux' ]]; then
-  if [ -z "$SSH_AGENT_PID" ]; then
-    exec ssh-agent $SHELL
-  fi
-fi
-
-echo "OS is: $platform"
-
 ############################
 # Include Additional Scripts
 ############################
@@ -33,6 +17,10 @@ for f in ~/dotfiles/bash/*.bash; do
   . $f
 done
 
+# Use an existing ssh-agent or create a new one
+sagent
+
+echo "OS is: $platform"
 
 ############################
 # Include Non Version
@@ -90,7 +78,7 @@ else
   alias la='ls -AlFh --color=always'
 fi
 
-PATH=/usr/local/bin:$PATH
+PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
