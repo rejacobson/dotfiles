@@ -4,6 +4,7 @@
 [alias]
 	co = checkout
   todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [apply]
 	whitespace = nowarn
 [color]
