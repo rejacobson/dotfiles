@@ -1,12 +1,12 @@
 [user]
-	name = Ryan Jacobson
-	email = rjacobson@bravenet.com
+  name = Ryan Jacobson
+  email = rjacobson@bravenet.com
 [alias]
-	co = checkout
+  co = checkout
   todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [apply]
-	whitespace = nowarn
+  whitespace = nowarn
 [color]
   branch = auto
   diff = auto
@@ -25,6 +25,6 @@
   changed = red
   untracked = cyan
 [push]
-	default = simple
+  default = simple
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
