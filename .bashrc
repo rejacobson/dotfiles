@@ -47,7 +47,21 @@ export TERM=xterm-color
 # ls Colors; directories are bold blue: 'Ex'
 export LSCOLORS='Exfxcxdxbxegedabagacad'
 
+##########################
+# History
+#########################
+# Append to .bash_history, don't overwrite it
 shopt -s histappend
+
+# Maxiumum history file size
+HISTFILESIZE=10000
+HISTSIZE=10000
+
+# Ignore commands that start with a space
+# Ignore consecutive duplicate commands
+HISTCONTROL=ignoreboth
+
+# Write to history before each command is executed
 PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 
 # Get the name of the current git branch
