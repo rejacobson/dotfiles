@@ -3,7 +3,7 @@
 set nocompatible
 
 " Pathogen - vim package manager
-call pathogen#infect() 
+call pathogen#infect()
 
 " Set the status bar and show the current git branch
 set statusline=%f\ L\ %l,C\ %c\ (%p%%)\ %m\ [%{GitBranch()}]
@@ -19,6 +19,7 @@ imap <left> <nop>
 imap <right> <nop>
 
 " Color scheme
+set re=1
 syntax on       " Turn on syntax highlighting
 set background=dark
 colorscheme dark-ruby
