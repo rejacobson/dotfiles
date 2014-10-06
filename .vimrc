@@ -63,3 +63,16 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 let g:EasyMotion_leader_key = ","
+
+""""""""""""""""""""""""
+" Beautify JS, CSS, HTML
+""""""""""""""""""""""""
+" Beautify the whole file
+noremap <c-s-c> :call CSSBeautify()<cr>
+noremap <c-s-h> :call HtmlBeautify()<cr>
+noremap <c-s-j> :call JsBeautify()<cr>
+
+" Beautify only the selected text
+vnoremap <c-s-c> :call RangeCSSBeautify()<cr>
+vnoremap <c-s-h> :call RangeHtmlBeautify()<cr>
+vnoremap <c-s-j> :call RangeJsBeautify()<cr>
