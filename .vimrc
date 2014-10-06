@@ -19,7 +19,9 @@ imap <left> <nop>
 imap <right> <nop>
 
 " Color scheme
-set re=1
+if exists("&re")
+  set re=1
+endif
 syntax on       " Turn on syntax highlighting
 set background=dark
 colorscheme dark-ruby
