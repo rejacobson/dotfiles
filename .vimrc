@@ -41,6 +41,8 @@ set incsearch   " Show matches as you type a search term
 set paste       " Retain tab and space indenting of pasted code
 set hidden      " Hide buffers instead of closing them.
 set so=14
+set splitbelow
+set splitright
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
