@@ -10,6 +10,23 @@ case "$uname" in
 esac
 
 ############################
+# Bash smart tab completion
+############################
+if [ "$platform" == 'osx' ]; then
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  else
+    echo "Bash Completion - could not find $(brew --prefix)/etc/bash_completion. Run this to install: brew install bash-completion"
+  fi
+else
+  if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  else
+    echo "Bash Completion - could not find /etc/bash_completion"
+  fi
+fi
+
+############################
 # Include Additional Scripts
 ############################
 for f in ~/dotfiles/bash/*.bash; do
