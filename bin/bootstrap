@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=(.bashrc .bash_profile .vimrc .vim .gitconfig)
+FILES=(.bashrc .bash_profile .gitconfig .inputrc .vim .vimrc)
 
 for file in ${FILES[*]}
 do
@@ -10,7 +10,8 @@ do
 
   echo "--- $file"
 
-  if [ -e $symlink ]; then
+  #    file exists        is NOT a symlink
+  if [ -e $symlink ] && [ ! -h $symlink ]; then
     echo "$file exists; Moving to $backup"
     mv $symlink $backup
   fi
