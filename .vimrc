@@ -67,7 +67,8 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-let g:EasyMotion_leader_key = ","
+let g:EasyMotion_leader_key = '<Space>'
+let mapleader=","
 
 """"""""""""""""""""""""
 " Beautify JS, CSS, HTML
@@ -81,3 +82,48 @@ noremap <c-s-j> :call JsBeautify()<cr>
 vnoremap <c-s-c> :call RangeCSSBeautify()<cr>
 vnoremap <c-s-h> :call RangeHtmlBeautify()<cr>
 vnoremap <c-s-j> :call RangeJsBeautify()<cr>
+
+set encoding=utf-8
+set fileencoding=utf-8
+
+" ctrl-p ignores these directories
+let g:ctrlp_custom_ignore = 'coverage/'
+
+" rspec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+
+function! RunCurrentSpecFile()
+  if InSpecFile()
+    let l:command = "zspec '" . @% . " -f documentation'"
+    call SetLastSpecCommand(l:command)
+    call RunSpecs(l:command)
+  endif
+endfunction
+
+function! RunNearestSpec()
+  if InSpecFile()
+    let l:command = "zspec '" . @% . ":" . line(".") . " -f documentation'"
+    call SetLastSpecCommand(l:command)
+    call RunSpecs(l:command)
+  endif
+endfunction
+
+function! RunLastSpec()
+  if exists("t:last_spec_command")
+    call RunSpecs(t:last_spec_command)
+  endif
+endfunction
+
+function! InSpecFile()
+  return match(expand("%"), "_spec.rb$") != -1
+endfunction
+
+function! SetLastSpecCommand(command)
+  let t:last_spec_command = a:command
+endfunction
+
+function! RunSpecs(command)
+  execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
+endfunction
