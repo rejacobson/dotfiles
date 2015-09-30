@@ -9,6 +9,12 @@ case "$uname" in
    *)       platform='unknown' ;;
 esac
 
+echo
+echo '●▬▬▬▬▬▬๑۩۩๑▬▬▬▬▬▬▬●'
+echo "   OS is: $platform"
+echo '●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●'
+echo
+
 ############################
 # Bash smart tab completion
 ############################
@@ -30,14 +36,9 @@ fi
 # Include Additional Scripts
 ############################
 for f in ~/dotfiles/bash/*.bash; do
-  echo "Including bash script: $f"
+  echo "source $f"
   . $f
 done
-
-# Use an existing ssh-agent or create a new one
-sagent
-
-echo "OS is: $platform"
 
 ############################
 # Include Non Version
@@ -45,10 +46,15 @@ echo "OS is: $platform"
 ############################
 if [ -d ~/.bash ]; then
   for f in ~/.bash/*; do
-    echo "Including bash script: $f"
+    echo "source $f"
     . $f
   done
 fi
+
+
+# Use an existing ssh-agent or create a new one
+sshagent_init
+
 
 # Disable ctrl+s from sending XOFF
 stty ixany
@@ -112,12 +118,12 @@ else
   alias la='ls -AlFh --color=always'
 fi
 
-PATH=$HOME/bin:/usr/local/bin:$PATH
+PATH=$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:$PATH
 
 # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin 
+PATH=$PATH:$HOME/.rvm/bin
 
 # This loads RVM into a shell session.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 unset BUNDLE_GEMFILE

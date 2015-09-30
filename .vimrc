@@ -1,12 +1,17 @@
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+filetype off
 
-" Pathogen - vim package manager
-call pathogen#infect()
+" Vundle package manager
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+source ~/.vim/.plugins
+call vundle#end()
+filetype plugin indent on
 
 " Set the status bar and show the current git branch
-set statusline=%f\ L\ %l,C\ %c\ (%p%%)\ %m\ [%{GitBranch()}]
+set statusline=%f\ L\ %l,C\ %c\ (%p%%)\ %m\ %{fugitive#statusline()}
 
 " disable arrow keys
 map <up> <nop>
@@ -26,12 +31,6 @@ syntax on       " Turn on syntax highlighting
 set background=dark
 colorscheme dark-ruby
 
-" NERDTree
-map <C-l> :tabn<CR>
-map <C-h> :tabp<CR>
-map <C-n> :NERDTree<CR>
-let NERDTreeMapActivateNode='<space>'
-
 " General Options
 set number      " Show line numbers on the side
 set hlsearch    " Highlight all search pattern matches
@@ -43,6 +42,8 @@ set hidden      " Hide buffers instead of closing them.
 set so=14
 set splitbelow
 set splitright
+set encoding=utf-8
+set fileencoding=utf-8
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -73,18 +74,10 @@ let mapleader=","
 """"""""""""""""""""""""
 " Beautify JS, CSS, HTML
 """"""""""""""""""""""""
-" Beautify the whole file
-noremap <c-s-c> :call CSSBeautify()<cr>
-noremap <c-s-h> :call HtmlBeautify()<cr>
-noremap <c-s-j> :call JsBeautify()<cr>
-
-" Beautify only the selected text
-vnoremap <c-s-c> :call RangeCSSBeautify()<cr>
-vnoremap <c-s-h> :call RangeHtmlBeautify()<cr>
-vnoremap <c-s-j> :call RangeJsBeautify()<cr>
-
-set encoding=utf-8
-set fileencoding=utf-8
+vnoremap <F2> :Autoformat<CR>
+vnoremap <buffer> <F3> :call RangeCssBeautify()<CR>
+vnoremap <buffer> <F4> :call RangeHtmlBeautify()<CR>
+vnoremap <buffer> <F5> :call RangeJsBeautify()<CR>
 
 " ctrl-p ignores these directories
 let g:ctrlp_custom_ignore = 'coverage/'

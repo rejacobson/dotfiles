@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Run specs with great speed and daring-do.
+#
+ps cax | grep zeus > /dev/null
+
+if [ $? -eq 0 ]; then
+  zeus rspec $1
+else
+  bundle exec rspec $1
+fi

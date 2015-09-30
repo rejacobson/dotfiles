@@ -65,5 +65,3 @@ function sshagent_init {
     # Finally, show what keys are currently in the agent
     ssh-add -L | cut -d' '  -f 3
 }
-
-alias sagent="sshagent_init"
