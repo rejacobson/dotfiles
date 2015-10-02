@@ -15,6 +15,11 @@ echo "   OS is: $platform"
 echo '●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●'
 echo
 
+# Hack to fix a fatal error abort in vim with airline
+if [ "$platform" == 'osx' ] && egrep "^Plugin.*?vim-airline" ~/.vim/vundle.plugins > /dev/null; then
+  alias vim='DYLD_FORCE_FLAT_NAMESPACE=1 vim'
+fi
+
 ############################
 # Bash smart tab completion
 ############################

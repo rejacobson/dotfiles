@@ -38,6 +38,7 @@ set splitbelow
 set splitright
 set encoding=utf-8
 set fileencoding=utf-8
+set laststatus=2 " Always show the status line
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -46,6 +47,14 @@ set backspace=indent,eol,start
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+" Color scheme
+if exists("&re")
+  set re=1
+endif
+syntax on       " Turn on syntax highlighting
+set background=dark
+colorscheme dark-ruby
 
 " Make trailing whitespace annoyingly highlighted.
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -57,13 +66,6 @@ autocmd BufWinLeave * call clearmatches()
 
 au BufNewFile,BufRead *.mab set filetype=ruby
 
-" Color scheme
-if exists("&re")
-  set re=1
-endif
-syntax on       " Turn on syntax highlighting
-set background=dark
-colorscheme dark-ruby
 
 " Remove trailing spaces
 map <Leader><space> :%s/\s\+$//g<CR>
