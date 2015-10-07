@@ -63,5 +63,5 @@ function sshagent_init {
     unset agentsocket
 
     # Finally, show what keys are currently in the agent
-    ssh-add -L | cut -d' '  -f 3
+    ssh-add -L | cut -d' '  -f 3 | sed "s|$HOME|  ~|g"
 }

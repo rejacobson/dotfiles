@@ -32,11 +32,13 @@ else
   fi
 fi
 
+echo 'Includes'
+
 ############################
 # Include Additional Scripts
 ############################
 for f in ~/dotfiles/bash/*.bash; do
-  echo "source $f"
+  echo "  $f" | sed "s|$HOME|~|g"
   . $f
 done
 
@@ -46,15 +48,15 @@ done
 ############################
 if [ -d ~/.bash ]; then
   for f in ~/.bash/*; do
-    echo "source $f"
+    echo "  $f" | sed "s|$HOME|~|g"
     . $f
   done
 fi
 
+echo
 
 # Use an existing ssh-agent or create a new one
 sshagent_init
-
 
 # Disable ctrl+s from sending XOFF
 stty ixany
@@ -113,9 +115,9 @@ fi
 # Aliases
 ###########################
 if [[ "$platform" == 'osx' ]]; then
-  alias la='ls -AlFhG'
+  alias la='ls -alFhG'
 else
-  alias la='ls -AlFh --color=always'
+  alias la='ls -alFh --color=always'
 fi
 
 PATH=$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:$PATH
