@@ -51,11 +51,13 @@ export TERM=xterm-color
 export CLICOLOR=1
 export LSCOLORS='Exfxcxdxbxegedabagacad'
 
-##########################
-# History
-#########################
-# Append to .bash_history, don't overwrite it
-shopt -s histappend
+# http://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+shopt -s autocd # A command name that is the name of a dir is executed as, cd dir
+shopt -s cdspell # Minor errors in the spelling of a directory will be corrected
+shopt -s dirspell # Attempts spelling correction on directory names during word completion
+shopt -s dotglob # Includes filenames beginning with a ‘.’ in the results of filename expansion
+shopt -s histappend # Append to .bash_history, don't overwrite it
+shopt -s nocaseglob # Matches filenames in a case-insensitive fashion when performing filename expansion
 
 # Maxiumum history file size
 HISTFILESIZE=10000
