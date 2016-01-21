@@ -1,7 +1,7 @@
 if [[ "$platform" == 'osx' ]]; then
-  alias la='ls -alFhG'
+  alias la='LC_COLLATE=C ls -alFhG'
 else
-  alias la='ls -alFh --color=always'
+  alias la='LC_COLLATE=C ls -alFh --color=always'
 fi
 
 alias lal='la | less'
