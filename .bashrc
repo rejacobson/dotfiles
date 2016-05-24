@@ -1,3 +1,7 @@
+# Use an existing ssh-agent or create a new one
+. ~/dotfiles/.sshagent
+sshagent_init
+
 ############################
 # Detect the OS
 ############################
@@ -37,9 +41,6 @@ if [ -d ~/.bash ]; then
 fi
 
 echo
-
-# Use an existing ssh-agent or create a new one
-sshagent_init
 
 # Disable ctrl+s from sending XOFF
 stty ixany
