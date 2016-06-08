@@ -5,9 +5,7 @@ if [ "$platform" == 'osx' ]; then
     echo "Bash Completion - could not find $(brew --prefix)/etc/bash_completion. Run this to install: brew install bash-completion"
   fi
 else
-  if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  else
-    [[ $- == *i* ]] && echo "Bash Completion - could not find /etc/bash_completion"
+  if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]]; then
+    . /usr/share/bash-completion/bash_completion
   fi
 fi
