@@ -13,19 +13,23 @@ case "$uname" in
    *)       platform='unknown' ;;
 esac
 
-echo
-echo '●▬▬▬▬▬▬๑۩۩๑▬▬▬▬▬▬▬●'
-echo "   OS is: $platform"
-echo '●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●'
-echo
+if [[ $- == *i* ]]; then
+  echo
+  echo '●▬▬▬▬▬▬๑۩۩๑▬▬▬▬▬▬▬●'
+  echo "   OS is: $platform"
+  echo '●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●'
+  echo
+fi
 
-echo 'Includes'
+if [[ $- == *i* ]]; then
+  echo 'Includes'
+fi
 
 ############################
 # Include Additional Scripts
 ############################
 for f in ~/dotfiles/bash/*; do
-  echo "  $f" | sed "s|$HOME|~|g"
+  [[ $- == *i* ]] && echo "  $f" | sed "s|$HOME|~|g"
   . $f
 done
 
@@ -35,16 +39,14 @@ done
 ############################
 if [ -d ~/.bash ]; then
   for f in ~/.bash/*; do
-    echo "  $f" | sed "s|$HOME|~|g"
+    [[ $- == *i* ]] && echo "  $f" | sed "s|$HOME|~|g"
     . $f
   done
 fi
 
-echo
-
 # Disable ctrl+s from sending XOFF
-stty ixany
-stty ixoff -ixon
+[[ $- == *i* ]] && stty ixany
+[[ $- == *i* ]] && stty ixoff -ixon
 
 # Default editor
 export EDITOR='vim'

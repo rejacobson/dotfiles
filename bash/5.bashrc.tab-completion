@@ -8,6 +8,6 @@ else
   if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   else
-    echo "Bash Completion - could not find /etc/bash_completion"
+    [[ $- == *i* ]] && echo "Bash Completion - could not find /etc/bash_completion"
   fi
 fi

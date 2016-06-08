@@ -4,7 +4,7 @@ function sshagent_findsockets {
 
 function sshagent_testsocket {
     if [ ! -x "$(which ssh-add)" ] ; then
-        echo "ssh-add is not available; agent testing aborted"
+        [[ $- == *i* ]] && echo "ssh-add is not available; agent testing aborted"
         return 1
     fi
 
@@ -19,15 +19,15 @@ function sshagent_testsocket {
     if [ -S $SSH_AUTH_SOCK ] ; then
         ssh-add -l > /dev/null
         if [ $? = 2 ] ; then
-            echo "Socket $SSH_AUTH_SOCK is dead!  Deleting!"
+            [[ $- == *i* ]] && echo "Socket $SSH_AUTH_SOCK is dead!  Deleting!"
             rm -f $SSH_AUTH_SOCK
             return 4
         else
-            echo "Found ssh-agent $SSH_AUTH_SOCK"
+            [[ $- == *i* ]] && echo "Found ssh-agent $SSH_AUTH_SOCK"
             return 0
         fi
     else
-        echo "$SSH_AUTH_SOCK is not a socket!"
+        [[ $- == *i* ]] && echo "$SSH_AUTH_SOCK is not a socket!"
         return 3
     fi
 }
@@ -63,5 +63,7 @@ function sshagent_init {
     unset agentsocket
 
     # Finally, show what keys are currently in the agent
-    ssh-add -L | cut -d' '  -f 3 | sed "s|$HOME|  ~|g"
+    if [[ $- == *i* ]]; then
+      ssh-add -L | cut -d' '  -f 3 | sed "s|$HOME|  ~|g"
+    fi
 }
