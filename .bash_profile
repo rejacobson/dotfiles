@@ -1,5 +1,3 @@
-echo "BASH_PROFILE -----------------------------"
-
 # Use an existing ssh-agent or create a new one
 . ~/dotfiles/.sshagent
 sshagent_init
