@@ -53,8 +53,9 @@ if exists("&re")
   set re=1
 endif
 syntax on       " Turn on syntax highlighting
+set t_Co=256
 set background=dark
-colorscheme dark-ruby
+colorscheme kolor
 
 " Make trailing whitespace annoyingly highlighted.
 highlight ExtraWhitespace ctermbg=red guibg=red
