@@ -213,7 +213,7 @@ if &t_Co > 255
   highlight Special         ctermfg=176     ctermbg=none    cterm=none
   highlight Identifier      ctermfg=80      ctermbg=none    cterm=none
   highlight PreProc         ctermfg=186     ctermbg=none    cterm=none
-  highlight String          ctermfg=138     ctermbg=none    cterm=none
+  highlight String          ctermfg=185     ctermbg=none    cterm=none
   highlight Number          ctermfg=186     ctermbg=none    cterm=none
   highlight Function        ctermfg=114     ctermbg=none    cterm=none
   highlight htmlEndTag      ctermfg=114     ctermbg=none    cterm=none
