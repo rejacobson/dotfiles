@@ -55,7 +55,8 @@ endif
 syntax on       " Turn on syntax highlighting
 set t_Co=256
 set background=dark
-colorscheme kolor
+"colorscheme kolor
+colorscheme Tomorrow-Night
 
 " Make trailing whitespace annoyingly highlighted.
 highlight ExtraWhitespace ctermbg=red guibg=red
