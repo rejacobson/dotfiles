@@ -33,4 +33,18 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
+function boldtext {
+  echo -ne "\033[1m\]$1\[\033[0m"
+}
 
+function bgcolor {
+  echo -ne "\033[48;5;$1m"
+}
+
+function fgcolor {
+  echo -ne "\033[38;5;$1m"
+}
+
+function resetcolor {
+  echo -ne "\e[0m"
+}
