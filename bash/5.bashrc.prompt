@@ -8,5 +8,5 @@ if [ $(id -u) -eq 0 ]; then
   export PS1="\n`fgcolor 74`\w `fgcolor 169`\$(parse_git_branch)\n`bgcolor 124``fgcolor 255`\u`resetcolor` `fgcolor 102`\h `fgcolor 237`▰`fgcolor 60`▰`fgcolor 67`▰`fgcolor 74`▰`fgcolor 255`▰`resetcolor` "
 else
   # Normal user
-  export PS1="\n`fgcolor 74`\w `fgcolor 169`\$(parse_git_branch)\n`fgcolor 143`\u `fgcolor 102`\h `fgcolor 237`▰`fgcolor 60`▰`fgcolor 67`▰`fgcolor 74`▰`fgcolor 255`▰`resetcolor` "
+  export PS1="\n`fgcolor 74`\w `fgcolor 140`\$(parse_git_branch)\n`fgcolor 143`\u `fgcolor 102`\h `fgcolor 237`▰`fgcolor 60`▰`fgcolor 67`▰`fgcolor 74`▰`fgcolor 255`▰`resetcolor` "
 fi
