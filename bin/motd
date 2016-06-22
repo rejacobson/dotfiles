@@ -1,0 +1,22 @@
+#!/bin/bash
+
+. ~/dotfiles/bash/0.colors
+
+LBL="`fgcolor2 98`"
+VAL="`fgcolor2 176`"
+RST="`resetcolor2`"
+
+declare -A info
+
+info=(
+  ['Last Login']="`last -1 -R  $USER | head -1 | cut -c 23-`"
+  ['Uptime    ']="`uptime | cut -c 2-`"
+)
+
+echo
+echo
+echo
+
+for label in "${!info[@]}"; do
+  echo "${LBL}${label}: ${VAL}${info["$label"]}${RST}"
+done

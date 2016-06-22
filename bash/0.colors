@@ -2,14 +2,30 @@ function boldtext {
   echo -ne "\[\e[1m\]$1\[\033[0m\]"
 }
 
+function boldtext2 {
+  echo -ne "\e[1m\]$1\[\033[0m"
+}
+
 function bgcolor {
   echo -ne "\[\e[48;5;$1m\]"
+}
+
+function bgcolor2 {
+  echo -ne "\e[48;5;$1m"
 }
 
 function fgcolor {
   echo -ne "\[\e[38;5;$1m\]"
 }
 
+function fgcolor2 {
+  echo -ne "\e[38;5;$1m"
+}
+
 function resetcolor {
   echo -ne '\[\e[0m\]'
+}
+
+function resetcolor2 {
+  echo -ne '\e[0m'
 }
