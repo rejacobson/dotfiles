@@ -28,7 +28,7 @@ fi
 ############################
 # Include Additional Scripts
 ############################
-for f in ~/dotfiles/bash/*; do
+for f in ~/dotfiles/bash.d/*; do
   [[ $- == *i* ]] && echo "  $f" | sed "s|$HOME|~|g"
   . $f
 done
