@@ -1,0 +1,56 @@
+#!/bin/bash
+
+. ~/dotfiles/bash/colors
+
+function print_bar {
+  local color=$1
+  local char=$2
+  local len=$3
+  local v=$(printf "%-${len}s" "$char")
+  if (( $len > 0 )); then
+    echo -en "$(fgcolor2 $color)${v// /$char}$(resetcolor2)"
+  fi
+}
+
+function round {
+  echo $(printf %.$2f $(echo "scale=$2;(((10^$2)*$1)+0.5)/(10^$2)" | bc))
+}
+
+BAR_CHAR='|'
+GRAPH_W=$(expr `tput cols` / 2)
+LABEL_CLR=`fgcolor2 $CLR_LIGHT`
+MEM_USED_CLR="$CLR_OK"
+MEM_BUFF_CLR="$CLR_HIGHLIGHT"
+MEM_FREE_CLR=0
+SWP_USED_CLR="$CLR_WARN"
+SWP_FREE_CLR=0
+RST=`resetcolor2`
+
+# Memory
+MEM=(`free -m | grep Mem`)
+MEM_TOTAL="${MEM[1]}"
+MEM_DIV=`round $(bc -l <<< "$MEM_TOTAL / $GRAPH_W") 0`
+MEM_USED=`round $(bc -l <<< "${MEM[2]} / $MEM_DIV") 0`
+MEM_FREE=`round $(bc -l <<< "${MEM[3]} / $MEM_DIV") 0`
+MEM_SHARED=`round $(bc -l <<< "${MEM[4]} / $MEM_DIV") 0`
+MEM_BUFF=`round $(bc -l <<< "${MEM[5]} / $MEM_DIV") 0`
+MEM_AVAIL=`round $(bc -l <<< "${MEM[6]} / $MEM_DIV") 0`
+
+MEM_USED_BAR=`print_bar $MEM_USED_CLR $BAR_CHAR $MEM_USED`
+MEM_BUFF_BAR=`print_bar $MEM_BUFF_CLR $BAR_CHAR $MEM_BUFF`
+MEM_FREE_BAR=`print_bar $MEM_FREE_CLR $BAR_CHAR $MEM_FREE`
+MEM_BAR="${MEM_USED_BAR}${MEM_BUFF_BAR}${MEM_FREE_BAR}"
+
+# Swap
+SWP=(`free -m | grep Swap`)
+SWP_TOTAL="${SWP[1]}"
+SWP_DIV=`round $(bc -l <<< "$SWP_TOTAL / $GRAPH_W") 0`
+SWP_USED=`round $(bc -l <<< "${SWP[2]} / $SWP_DIV") 0`
+SWP_FREE=`round $(bc -l <<< "${SWP[3]} / $SWP_DIV") 0`
+
+SWP_USED_BAR=`print_bar $SWP_USED_CLR $BAR_CHAR $SWP_USED`
+SWP_FREE_BAR=`print_bar $SWP_FREE_CLR $BAR_CHAR $SWP_FREE`
+SWP_BAR="${SWP_USED_BAR}${SWP_FREE_BAR}"
+
+printf "${LABEL_CLR}Mem[${RST}%-${GRAPH_W}s%s${LABEL_CLR}] ${MEM_TOTAL}${RST}\n" $MEM_BAR
+printf "${LABEL_CLR}Swp[${RST}%-${GRAPH_W}s%s${LABEL_CLR}] ${SWP_TOTAL}${RST}\n" $SWP_BAR

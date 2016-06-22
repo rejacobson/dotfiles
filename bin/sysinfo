@@ -1,0 +1,24 @@
+#!/bin/bash
+
+. ~/dotfiles/bash/colors
+. ~/dotfiles/bash/functions
+
+LBL_CLR="`fgcolor2 $CLR_SECONDARY`"
+VAL_CLR="`fgcolor2 $CLR_PRIMARY`"
+RST="`resetcolor2`"
+
+function print_info {
+  printf '%-30s%s %s\n' "${LBL_CLR}$1" "${VAL_CLR}$2${RST}"
+}
+
+HOSTNAME=`hostname`
+OS=`cat /etc/fedora-release 2>/dev/null || uname -sr`
+HARDWARE=`uname -srm`
+LAST_LOGIN=`last -1 -R $USER | head -1 | cut -c 23-`
+UPTIME=`trim "$(uptime -p)"`
+
+print_info 'Hostname' "$HOSTNAME"
+print_info 'OS' "$OS"
+print_info 'Hardware' "$HARDWARE"
+print_info 'Last Login' "$LAST_LOGIN"
+print_info 'Uptime' "$UPTIME"

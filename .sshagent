@@ -54,7 +54,6 @@ function sshagent_init {
     # If at this point we still haven't located an agent, it's time to
     # start a new one
     if [ $AGENTFOUND = 0 ] ; then
-        #eval `ssh-agent`
         exec ssh-agent $SHELL
     fi
 
@@ -63,7 +62,7 @@ function sshagent_init {
     unset agentsocket
 
     # Finally, show what keys are currently in the agent
-    if [[ $- == *i* ]]; then
-      ssh-add -L | cut -d' '  -f 3 | sed "s|$HOME|  ~|g"
-    fi
+    #if [[ $- == *i* ]]; then
+    #  ssh-add -L | cut -d' '  -f 3 | sed "s|$HOME|  ~|g"
+    #fi
 }

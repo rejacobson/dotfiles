@@ -1,0 +1,3 @@
+function trim {
+  echo -n `sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' <<< "$1"`
+}

@@ -13,23 +13,10 @@ case "$uname" in
    *)       platform='unknown' ;;
 esac
 
-if [[ $- == *i* ]]; then
-  echo
-  echo '●▬▬▬▬▬▬๑۩۩๑▬▬▬▬▬▬▬●'
-  echo "   OS is: $platform"
-  echo '●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●'
-  echo
-fi
-
-if [[ $- == *i* ]]; then
-  echo 'Includes'
-fi
-
 ############################
 # Include Additional Scripts
 ############################
 for f in ~/dotfiles/bash.d/*; do
-  [[ $- == *i* ]] && echo "  $f" | sed "s|$HOME|~|g"
   . $f
 done
 
@@ -39,7 +26,6 @@ done
 ############################
 if [ -d ~/.bash ]; then
   for f in ~/.bash/*; do
-    [[ $- == *i* ]] && echo "  $f" | sed "s|$HOME|~|g"
     . $f
   done
 fi
@@ -74,6 +60,8 @@ HISTCONTROL=ignoreboth
 PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 
 PATH=$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:$PATH
+
+~/dotfiles/bin/motd
 
 # This loads RVM into a shell session.
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

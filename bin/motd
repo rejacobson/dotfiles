@@ -1,6 +1,22 @@
 #!/bin/bash
 
+. ~/dotfiles/bash/colors
+
+echo -ne `fgcolor2 198`
+figlet -f smslant `hostname`
+echo -ne `resetcolor2`
+
+~/dotfiles/bin/memusage
+echo
 ~/dotfiles/bin/sysinfo
 echo
+
+echo -ne `fgcolor2 $CLR_PRIMARY_SHADE1`
+w
+echo -ne `resetcolor2`
+
 echo
-~/dotfiles/bin/memusage
+
+echo -ne `fgcolor2 $CLR_PRIMARY_SHADE2`
+ssh-add -L | cut -d' '  -f 3 | sed "s|$HOME|~|g"
+echo -ne `resetcolor2`
