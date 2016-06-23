@@ -12,7 +12,7 @@ echo
 echo
 
 echo -ne `fgcolor2 $CLR_PRIMARY_SHADE1`
-w
+w -i
 echo -ne `resetcolor2`
 
 echo
