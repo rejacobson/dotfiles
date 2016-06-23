@@ -1,5 +1,5 @@
 # Use an existing ssh-agent or create a new one
-. ~/dotfiles/.sshagent
+. ~/dotfiles/bash/sshagent
 sshagent_init
 
 ############################
