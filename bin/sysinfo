@@ -8,7 +8,10 @@ VAL_CLR="`fgcolor2 $CLR_PRIMARY`"
 RST="`resetcolor2`"
 
 function print_info {
-  printf '%-30s%s %s\n' "${LBL_CLR}$1" "${VAL_CLR}$2${RST}"
+  local label="$1"
+  local val="$2"
+  local line='..............................'
+  printf "%s %s %s\n" "${LBL_CLR}${label}" "${line:${#label}}" "${VAL_CLR}${val}${RST}"
 }
 
 HOSTNAME=`hostname`
