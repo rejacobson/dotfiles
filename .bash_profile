@@ -61,13 +61,11 @@ PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 
 PATH=$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:$PATH
 
-~/dotfiles/bin/motd
-
-# This loads RVM into a shell session.
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
 unset BUNDLE_GEMFILE
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+~/dotfiles/bin/motd
+

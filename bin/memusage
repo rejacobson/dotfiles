@@ -29,7 +29,7 @@ RST=`resetcolor2`
 # Memory
 MEM=(`free -m | grep Mem`)
 MEM_TOTAL="${MEM[1]}"
-MEM_DIV=`round $(bc -l <<< "$MEM_TOTAL / $GRAPH_W") 0`
+MEM_DIV=`bc -l <<< "$MEM_TOTAL / $GRAPH_W"`
 MEM_USED=`round $(bc -l <<< "${MEM[2]} / $MEM_DIV") 0`
 MEM_FREE=`round $(bc -l <<< "${MEM[3]} / $MEM_DIV") 0`
 MEM_SHARED=`round $(bc -l <<< "${MEM[4]} / $MEM_DIV") 0`
@@ -44,7 +44,7 @@ MEM_BAR="${MEM_USED_BAR}${MEM_BUFF_BAR}${MEM_FREE_BAR}"
 # Swap
 SWP=(`free -m | grep Swap`)
 SWP_TOTAL="${SWP[1]}"
-SWP_DIV=`round $(bc -l <<< "$SWP_TOTAL / $GRAPH_W") 0`
+SWP_DIV=`bc -l <<< "$SWP_TOTAL / $GRAPH_W"`
 SWP_USED=`round $(bc -l <<< "${SWP[2]} / $SWP_DIV") 0`
 SWP_FREE=`round $(bc -l <<< "${SWP[3]} / $SWP_DIV") 0`
 
