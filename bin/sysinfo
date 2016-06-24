@@ -17,8 +17,8 @@ function print_info {
 HOSTNAME=`hostname`
 OS=`cat /etc/fedora-release 2>/dev/null || uname -sr`
 HARDWARE=`uname -srm`
-LAST_LOGIN=`last -1 -R $USER | head -1 | cut -c 23-`
-UPTIME=`trim "$(uptime -p)"`
+LAST_LOGIN=`trim "$((last -1R $USER 2>/dev/null || last -1 $USER) | head -1 | cut -c 23-)"`
+UPTIME=`trim "$(uptime -p 2>/dev/null || uptime)"`
 
 print_info 'Hostname' "$HOSTNAME"
 print_info 'OS' "$OS"
