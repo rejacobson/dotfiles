@@ -25,3 +25,4 @@ print_info 'OS' "$OS"
 print_info 'Hardware' "$HARDWARE"
 print_info 'Last Login' "$LAST_LOGIN"
 print_info 'Uptime' "$UPTIME"
+echo

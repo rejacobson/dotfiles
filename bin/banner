@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. ~/dotfiles/bash/colors
+
+echo
+echo -ne `fgcolor2 198`
+figlet -w `tput cols` -f fender `hostname`
+echo -ne `resetcolor2`

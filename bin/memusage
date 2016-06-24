@@ -54,3 +54,5 @@ SWP_BAR="${SWP_USED_BAR}${SWP_FREE_BAR}"
 
 printf "${LABEL_CLR}Mem[${RST}%-${GRAPH_W}s%s${LABEL_CLR}] ${MEM_TOTAL}${RST}\n" $MEM_BAR
 printf "${LABEL_CLR}Swp[${RST}%-${GRAPH_W}s%s${LABEL_CLR}] ${SWP_TOTAL}${RST}\n" $SWP_BAR
+
+echo
