@@ -4,5 +4,5 @@
 
 echo
 echo -ne `fgcolor2 198`
-figlet -w `tput cols` -f fender `hostname`
+figlet -w `tput cols` -f fender `hostname -s`
 echo -ne `resetcolor2`
