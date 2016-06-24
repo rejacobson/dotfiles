@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -z "`which free`" ]; then
+  exit
+fi
+
 . ~/dotfiles/bash/colors
 
 function print_bar {
