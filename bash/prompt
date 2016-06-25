@@ -8,7 +8,7 @@ rightprompt() {
 }
 
 mydate() {
-  echo -ne `TZ='America/Vancouver' date +'%b %a %d ▰ %I:%M:%S'`
+  echo -ne `TZ='America/Vancouver' date +'%b %a %d %I:%M:%S'`
 }
 
 if [ $(id -u) -eq 0 ]; then
@@ -16,6 +16,5 @@ if [ $(id -u) -eq 0 ]; then
   export PS1="\n`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(parse_git_branch)\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`▰`fgcolor $CLR_PRIMARY_SHADE2`▰`fgcolor $CLR_PRIMARY_SHADE1`▰`fgcolor $CLR_PRIMARY`▰`fgcolor 255`▰`resetcolor` "
 else
   # Normal user
-  export PS1="\n\[\$(tput sc; rightprompt \"\$(TZ='America/Vancouver' date +'%b %a %d %I:%M:%S')\"; tput rc)\]`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(parse_git_branch)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`▰`fgcolor $CLR_PRIMARY_SHADE2`▰`fgcolor $CLR_PRIMARY_SHADE1`▰`fgcolor $CLR_PRIMARY`▰`fgcolor 255`▰`resetcolor` "
-  #export PS1="\n`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(parse_git_branch)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`▰`fgcolor $CLR_PRIMARY_SHADE2`▰`fgcolor $CLR_PRIMARY_SHADE1`▰`fgcolor $CLR_PRIMARY`▰`fgcolor 255`▰`resetcolor` "
+  export PS1="\n\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(parse_git_branch)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`▰`fgcolor $CLR_PRIMARY_SHADE2`▰`fgcolor $CLR_PRIMARY_SHADE1`▰`fgcolor $CLR_PRIMARY`▰`fgcolor 255`▰`resetcolor` "
 fi
