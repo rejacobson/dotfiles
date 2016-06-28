@@ -22,7 +22,7 @@ parse_git_status() {
   fi
 
   if [ ! -z "$tokens" ]; then
-    echo -n "$tokens"
+    echo -n "$tokens "
   fi
 }
 
@@ -32,7 +32,7 @@ git_prompt() {
 
   [[ -z $branch ]] && exit
 
-  echo -ne "`fgcolor2 $CLR_SECONDARY`$SEPARATOR $branch $status $SEPARATOR`resetcolor2`"
+  echo -ne "`fgcolor2 $CLR_SECONDARY`$SEPARATOR $branch $status$SEPARATOR`resetcolor2`"
 }
 
 rightprompt() {
