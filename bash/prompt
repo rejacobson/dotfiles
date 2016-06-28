@@ -21,6 +21,14 @@ parse_git_status() {
     tokens="${tokens}?"
   fi
 
+  if [[ "$status" =~ 'Your branch is ahead' ]]; then
+    tokens="${tokens}↑"
+  fi
+
+  if [[ "$status" =~ 'Your branch is behind' ]]; then
+    tokens="${tokens}↓"
+  fi
+
   if [ ! -z "$tokens" ]; then
     echo -n "$tokens "
   fi
