@@ -1,6 +1,38 @@
 # Get the name of the current git branch
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/▰ \1 ▰/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+parse_git_status() {
+  local status=`git status 2> /dev/null`
+  local tokens=''
+
+  [[ -z "$status" ]] && exit
+
+  if [[ "$status" =~ 'Changes to be committed' ]]; then
+    tokens="${tokens}+"
+  fi
+
+  if [[ "$status" =~ 'Changes not staged' ]]; then
+    tokens="${tokens}!"
+  fi
+
+  if [[ "$status" =~ 'Untracked files' ]]; then
+    tokens="${tokens}?"
+  fi
+
+  if [ ! -z "$tokens" ]; then
+    echo -n "$tokens"
+  fi
+}
+
+git_prompt() {
+  local branch=$(parse_git_branch)
+  local status=$(parse_git_status)
+
+  [[ -z $branch ]] && exit
+
+  echo -ne "`fgcolor2 $CLR_SECONDARY`$SEPARATOR $branch $status $SEPARATOR`resetcolor2`"
 }
 
 rightprompt() {
@@ -11,10 +43,13 @@ mydate() {
   echo -ne `TZ='America/Vancouver' date +'%b %a %d %I:%M:%S'`
 }
 
+SEPARATOR='▰'
+TERMINATOR="`fgcolor $CLR_DARK`$SEPARATOR`fgcolor $CLR_PRIMARY_SHADE2`$SEPARATOR`fgcolor $CLR_PRIMARY_SHADE1`$SEPARATOR`fgcolor $CLR_PRIMARY`$SEPARATOR`fgcolor 255`$SEPARATOR`resetcolor`"
+
 if [ $(id -u) -eq 0 ]; then
   # Root user
-  export PS1="\n`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(parse_git_branch)\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`▰`fgcolor $CLR_PRIMARY_SHADE2`▰`fgcolor $CLR_PRIMARY_SHADE1`▰`fgcolor $CLR_PRIMARY`▰`fgcolor 255`▰`resetcolor` "
+  export PS1="\n`fgcolor $CLR_PRIMARY`\w \$(git_prompt)\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h $TERMINATOR "
 else
   # Normal user
-  export PS1="\n\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(parse_git_branch)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`▰`fgcolor $CLR_PRIMARY_SHADE2`▰`fgcolor $CLR_PRIMARY_SHADE1`▰`fgcolor $CLR_PRIMARY`▰`fgcolor 255`▰`resetcolor` "
+  export PS1="\n\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]`fgcolor $CLR_PRIMARY`\w \$(git_prompt)\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h $TERMINATOR "
 fi
