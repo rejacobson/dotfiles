@@ -1,4 +1,8 @@
 # Get the name of the current git branch
+
+SEPARATOR='▰'
+TERMINATOR="`fgcolor $CLR_DARK`$SEPARATOR`fgcolor $CLR_PRIMARY_SHADE2`$SEPARATOR`fgcolor $CLR_PRIMARY_SHADE1`$SEPARATOR`fgcolor $CLR_PRIMARY`$SEPARATOR`fgcolor 255`$SEPARATOR`resetcolor`"
+
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
@@ -40,7 +44,7 @@ git_prompt() {
 
   [[ -z $branch ]] && exit
 
-  echo -ne "`fgcolor2 $CLR_SECONDARY`$SEPARATOR $branch $status$SEPARATOR`resetcolor2`"
+  echo -ne "$SEPARATOR $branch $status$SEPARATOR"
 }
 
 rightprompt() {
@@ -51,13 +55,10 @@ mydate() {
   echo -ne `TZ='America/Vancouver' date +'%b %a %d %I:%M:%S'`
 }
 
-SEPARATOR='▰'
-TERMINATOR="`fgcolor $CLR_DARK`$SEPARATOR`fgcolor $CLR_PRIMARY_SHADE2`$SEPARATOR`fgcolor $CLR_PRIMARY_SHADE1`$SEPARATOR`fgcolor $CLR_PRIMARY`$SEPARATOR`fgcolor 255`$SEPARATOR`resetcolor`"
-
 if [ $(id -u) -eq 0 ]; then
   # Root user
-  export PS1="\n`fgcolor $CLR_PRIMARY`\w \$(git_prompt)\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h $TERMINATOR "
+  export PS1="\n`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h $TERMINATOR "
 else
   # Normal user
-  export PS1="\n\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]`fgcolor $CLR_PRIMARY`\w \$(git_prompt)\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h $TERMINATOR "
+  export PS1="\n\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h $TERMINATOR "
 fi
