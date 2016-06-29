@@ -60,5 +60,5 @@ if [ $(id -u) -eq 0 ]; then
   export PS1="\n`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h $TERMINATOR "
 else
   # Normal user
-  export PS1="\n\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h $TERMINATOR "
+  export PS1="\n`fgcolor 65`\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h $TERMINATOR "
 fi
