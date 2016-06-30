@@ -6,11 +6,11 @@
 ~/dotfiles/bin/memusage
 ~/dotfiles/bin/sysinfo
 
-echo -ne "`fgcolor2 $c_sec_dk2`"
+echo -ne "`fgcolor2 $c_md`"
 w -i
 echo -ne "`resetcolor2`"
 echo
 
-echo -ne `fgcolor2 $c_pri_dk2`
+echo -ne `fgcolor2 $c_md`
 ssh-add -L | cut -d' '  -f 3 | sed "s|$HOME|~|g"
 echo -ne `resetcolor2`
