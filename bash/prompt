@@ -64,10 +64,15 @@ pwd_is_writable() {
   fi
 }
 
+mytty() {
+  local _tty=`tty`
+  echo -n "${_tty:5}"
+}
+
 if [ $(id -u) -eq 0 ]; then
   # Root user
-  export PS1="\n\$(pwd_is_writable)`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h $TERMINATOR "
+  export PS1="\n\$(pwd_is_writable)`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`\$(mytty) $TERMINATOR "
 else
   # Normal user
-  export PS1="\n`fgcolor 65`\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]\$(pwd_is_writable)`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h $TERMINATOR "
+  export PS1="\n`fgcolor 65`\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]\$(pwd_is_writable)`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`\$(mytty) $TERMINATOR "
 fi
