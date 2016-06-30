@@ -2,7 +2,7 @@
 
 PROMPT_SYM='▰'
 WRITE_SYM=':'
-TERMINATOR="`fgcolor $CLR_DARK`$PROMPT_SYM`fgcolor $CLR_PRIMARY_SHADE2`$PROMPT_SYM`fgcolor $CLR_PRIMARY_SHADE1`$PROMPT_SYM`fgcolor $CLR_PRIMARY`$PROMPT_SYM`fgcolor 255`$PROMPT_SYM`resetcolor`"
+TERMINATOR="`fgcolor $c_dk`$PROMPT_SYM`fgcolor $c_pri_dk2`$PROMPT_SYM`fgcolor $c_pri_dk1`$PROMPT_SYM`fgcolor $c_pri`$PROMPT_SYM`fgcolor 255`$PROMPT_SYM`resetcolor`"
 
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
@@ -58,9 +58,9 @@ mydate() {
 
 pwd_is_writable() {
   if [[ -w "${PWD}" ]]; then
-    echo -ne "`fgcolor2 $CLR_PRIMARY`$WRITE_SYM`resetcolor2`"
+    echo -ne "`fgcolor2 $c_pri`$WRITE_SYM`resetcolor2`"
   else
-    echo -ne "`fgcolor2 $CLR_WARN`$WRITE_SYM`resetcolor2`"
+    echo -ne "`fgcolor2 $c_wrn`$WRITE_SYM`resetcolor2`"
   fi
 }
 
@@ -71,8 +71,8 @@ mytty() {
 
 if [ $(id -u) -eq 0 ]; then
   # Root user
-  export PS1="\n\$(pwd_is_writable)`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`bgcolor $CLR_WARN``fgcolor 255` \u `resetcolor` `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`\$(mytty) $TERMINATOR "
+  export PS1="\n\$(pwd_is_writable)`fgcolor $c_pri`\w `fgcolor $c_sec`\$(git_prompt)`resetcolor`\n`bgcolor $c_wrn``fgcolor 255` \u `resetcolor` `fgcolor $c_lt`\h `fgcolor $c_dk`\$(mytty) $TERMINATOR "
 else
   # Normal user
-  export PS1="\n`fgcolor 65`\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]\$(pwd_is_writable)`fgcolor $CLR_PRIMARY`\w `fgcolor $CLR_SECONDARY`\$(git_prompt)`resetcolor`\n`fgcolor $CLR_HIGHLIGHT`\u `fgcolor $CLR_LIGHT`\h `fgcolor $CLR_DARK`\$(mytty) $TERMINATOR "
+  export PS1="\n`fgcolor 65`\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]\$(pwd_is_writable)`fgcolor $c_pri`\w `fgcolor $c_sec`\$(git_prompt)`resetcolor`\n`fgcolor $c_hi`\u `fgcolor $c_lt`\h `fgcolor $c_dk`\$(mytty) $TERMINATOR "
 fi

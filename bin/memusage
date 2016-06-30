@@ -22,11 +22,11 @@ function round {
 
 BAR_CHAR='|'
 GRAPH_W=$(expr `tput cols` / 2)
-LABEL_CLR=`fgcolor2 $CLR_LIGHT`
-MEM_USED_CLR="$CLR_OK"
-MEM_BUFF_CLR="$CLR_HIGHLIGHT"
+LABEL_CLR=`fgcolor2 $c_lt`
+MEM_USED_CLR="$c_ok"
+MEM_BUFF_CLR="$c_hi"
 MEM_FREE_CLR=0
-SWP_USED_CLR="$CLR_WARN"
+SWP_USED_CLR="$c_wrn"
 SWP_FREE_CLR=0
 RST=`resetcolor2`
 

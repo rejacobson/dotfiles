@@ -3,8 +3,8 @@
 . ~/dotfiles/bash/colors
 . ~/dotfiles/bash/functions
 
-LBL_CLR="`fgcolor2 $CLR_SECONDARY`"
-VAL_CLR="`fgcolor2 $CLR_PRIMARY`"
+LBL_CLR="`fgcolor2 $c_sec`"
+VAL_CLR="`fgcolor2 $c_pri`"
 RST="`resetcolor2`"
 
 function print_info {

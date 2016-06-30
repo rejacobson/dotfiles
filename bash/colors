@@ -1,50 +1,68 @@
-CLR_PRIMARY=74
-CLR_PRIMARY_SHADE1=67
-CLR_PRIMARY_SHADE2=60
-CLR_PRIMARY_BRIGHT1=81
-CLR_PRIMARY_BRIGHT2=123
+c_pri=38
+c_pri_dk1=31
+c_pri_dk2=24
+c_pri_lt1=45
+c_pri_lt2=51
 
-CLR_SECONDARY=140
-CLR_SECONDARY_SHADE1=133
-CLR_SECONDARY_SHADE2=126
+c_sec=141
+c_sec_dk1=135
+c_sec_dk2=129
+c_sec_lt1=147
+c_sec_lt2=159
 
-CLR_HIGHLIGHT=143
-CLR_HIGHLIGHT_SHADE1=143
-CLR_HIGHLIGHT_SHADE2=142
+c_hi=143
+c_lo=29
 
-CLR_LIGHT=102
-CLR_DARK=237
-CLR_OK=72
-CLR_WARN=125
+c_lt=102
+c_dk=237
+c_ok=72
+c_wrn=125
 
-function boldtext {
+boldtext() {
   echo -ne "\[\e[1m\]$1\[\033[0m\]"
 }
 
-function boldtext2 {
+boldtext2() {
   echo -ne "\e[1m\]$1\[\033[0m"
 }
 
-function bgcolor {
+bgcolor() {
   echo -ne "\[\e[48;5;$1m\]"
 }
 
-function bgcolor2 {
+bgcolor2() {
   echo -ne "\e[48;5;$1m"
 }
 
-function fgcolor {
+fgcolor() {
   echo -ne "\[\e[38;5;$1m\]"
 }
 
-function fgcolor2 {
+fgcolor2() {
   echo -ne "\e[38;5;$1m"
 }
 
-function resetcolor {
+resetcolor() {
   echo -ne '\[\e[0m\]'
 }
 
-function resetcolor2 {
+resetcolor2() {
   echo -ne '\e[0m'
+}
+
+palette() {
+  local space="          "
+
+  echo -e "`bgcolor2 $c_pri`$space`resetcolor2` `fgcolor2 $c_pri`primary $c_pri`resetcolor2`"
+  echo -e "`bgcolor2 $c_sec`$space`resetcolor2` `fgcolor2 $c_sec`secondary $c_sec`resetcolor2`"
+  echo -e "`bgcolor2 $c_hi`$space`resetcolor2`" `fgcolor2 $c_hi`highlight $c_hi`resetcolor2`
+  echo -e "`bgcolor2 65`$space`resetcolor2`" `fgcolor2 65`other 65`resetcolor2`
+
+  echo
+
+  echo -e "`bgcolor2 $c_pri`$space`resetcolor2` `fgcolor2 $c_pri`primary $c_pri`resetcolor2`"
+  echo -e "`bgcolor2 $c_pri_dk1`$space`resetcolor2`"
+  echo "`bgcolor2 $c_pri_dk2`$space`resetcolor2`"
+  echo "`bgcolor2 $c_pri_lt1`$space`resetcolor2`"
+  echo "`bgcolor2 $c_pri_lt2`$space`resetcolor2`"
 }
