@@ -36,7 +36,7 @@ fi
 
 # Default editor
 export EDITOR='vim'
-export TERM=xterm-color
+export TERM=xterm-256color
 export CLICOLOR=1
 export LSCOLORS='Exfxcxdxbxegedabagacad'
 
@@ -59,7 +59,7 @@ HISTCONTROL=ignoreboth
 # Write to history before each command is executed
 PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 
-PATH=$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:$PATH
+PATH=$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 unset BUNDLE_GEMFILE
 
