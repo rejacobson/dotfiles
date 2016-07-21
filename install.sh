@@ -4,7 +4,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 cd "$DIR"
 
-FILES=(.bashrc .bash_profile .gemrc .gitconfig .inputrc .vim .vimrc)
+FILES=(.bashrc .bash_profile .cheat .gemrc .gitconfig .inputrc .tmux.conf .vim .vimrc)
 
 for file in ${FILES[*]}
 do
@@ -12,19 +12,22 @@ do
   symlink="$HOME/$file"
   backup="$HOME/${file}_BAK"
 
-  echo "--- $file"
+  echo "$file"
 
-  #    file exists        is NOT a symlink
-  if [ -e $symlink ] && [ ! -h $symlink ]; then
-    echo "$file exists; Moving to $backup"
-    mv $symlink $backup
-  fi
+  if [ ! -h $symlink ]; then
+    if [ -e $symlink ]; then
+      echo "--- Moving $file to $backup"
+      mv $symlink $backup
+    fi
 
-  if [ -e $dotfile ]; then
-    echo "Creating sym link: $dotfile -> $symlink"
-    ln -s $dotfile $symlink
+    if [ -e $dotfile ]; then
+      echo "--- Creating sym link: $dotfile -> $symlink"
+      ln -s $dotfile $symlink
+    else
+      echo "--- Dotfile does not exist: $dotfile"
+    fi
   else
-    echo "Dotfile does not exist: $dotfile"
+    echo "--- Already installed"
   fi
 
   echo -e "\n"
