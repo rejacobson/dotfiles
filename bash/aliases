@@ -5,3 +5,5 @@ else
 fi
 
 alias lal='la | less'
+
+alias tmux='tmux -2'
