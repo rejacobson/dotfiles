@@ -5,5 +5,9 @@ else
 fi
 
 alias lal='la | less'
+alias lad="la | grep '^d'"
+alias laf="la | grep -v '^d'"
 
 alias tmux='tmux -2'
+
+alias fuck='sudo $(history -p \!\!)'
