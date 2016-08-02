@@ -4,5 +4,9 @@
 
 echo
 echo -ne `fgcolor2 198`
-figlet -w `tput cols` -f fender `hostname -s`
+if [ `which figlet` ]; then
+  figlet -w `tput cols` -f fender `hostname -s`
+else
+  echo `hostname -s`
+fi
 echo -ne `resetcolor2`
