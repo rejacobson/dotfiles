@@ -4,7 +4,7 @@
 
 echo
 echo -ne `fgcolor2 198`
-if [ `which figlet` ]; then
+if [ `which figlet 2> /dev/null` ]; then
   figlet -w `tput cols` -f fender `hostname -s`
 else
   echo `hostname -s`
