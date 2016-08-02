@@ -12,5 +12,10 @@ echo -ne "`resetcolor2`"
 echo
 
 echo -ne `fgcolor2 $c_md`
-ssh-add -L | cut -d' '  -f 3 | sed "s|$HOME|~|g"
+IDENTS=`ssh-add -L`
+if [[ $IDENTS =~ 'no identities' ]]; then
+  echo "$IDENTS"
+else
+  echo "$IDENTS" | cut -d' '  -f 3 | sed "s|$HOME|~|g"
+fi
 echo -ne `resetcolor2`
