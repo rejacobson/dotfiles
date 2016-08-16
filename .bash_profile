@@ -39,6 +39,7 @@ export EDITOR='vim'
 export TERM=xterm-256color
 export CLICOLOR=1
 export LSCOLORS='Exfxcxdxbxegedabagacad'
+export MANPAGER=`which most`
 
 # http://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
 shopt -s autocd # A command name that is the name of a dir is executed as, cd dir
