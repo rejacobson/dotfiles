@@ -8,3 +8,4 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_eruby_ruby_quiet_messages = {'regex': 'in void context'}
+let g:syntastic_quiet_messages = {'regex': 'Undefined mixin'}
