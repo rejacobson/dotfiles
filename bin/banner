@@ -3,7 +3,7 @@
 . ~/dotfiles/bash/colors
 
 echo
-echo -ne `fgcolor2 198`
+echo -ne `fgcolor2 $c_pri`
 if [ `which figlet 2> /dev/null` ]; then
   figlet -w `tput cols` -f fender `hostname -s`
 else

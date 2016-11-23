@@ -6,7 +6,7 @@
 ~/dotfiles/bin/memusage
 ~/dotfiles/bin/sysinfo
 
-echo -ne "`fgcolor2 $c_md`"
+echo -ne "`fgcolor2 $c_lt`"
 w -i
 echo -ne "`resetcolor2`"
 echo

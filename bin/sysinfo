@@ -4,7 +4,7 @@
 . ~/dotfiles/bash/functions
 
 LBL_CLR="`fgcolor2 $c_sec`"
-VAL_CLR="`fgcolor2 $c_pri`"
+VAL_CLR="`fgcolor2 $c_dk`"
 RST="`resetcolor2`"
 
 function print_info {
