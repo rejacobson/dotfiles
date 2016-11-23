@@ -3,11 +3,14 @@
 . ~/dotfiles/bash/colors
 
 ~/dotfiles/bin/banner
-~/dotfiles/bin/memusage
-~/dotfiles/bin/sysinfo
+
+echo -ne "`fgcolor2 $c_dk`"
+echo `uptime -p`
+echo
+echo -ne "`resetcolor2`"
 
 echo -ne "`fgcolor2 $c_lt`"
-w -i
+w -hsi
 echo -ne "`resetcolor2`"
 echo
 
@@ -18,4 +21,9 @@ if [[ $IDENTS =~ 'no identities' ]]; then
 else
   echo "$IDENTS" | cut -d' '  -f 3 | sed "s|$HOME|~|g"
 fi
+echo
+
 echo -ne `resetcolor2`
+~/dotfiles/bin/sysinfo
+~/dotfiles/bin/memusage
+
