@@ -10,7 +10,7 @@ echo
 echo -ne "`resetcolor2`"
 
 echo -ne "`fgcolor2 $c_lt`"
-w -hsi
+w -hsi 2>/dev/null || w -hi
 echo -ne "`resetcolor2`"
 echo
 
