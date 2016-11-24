@@ -10,14 +10,20 @@ c_sec_dk2=162
 c_sec_lt1=213
 c_sec_lt2=219
 
-c_hi=178
-c_lo=29
+c_hi=99
+c_lo=36
 
 c_lt=30
 c_md=240
 c_dk=24
 c_ok=72
 c_wrn=196
+
+colortest() {
+  fgcolor2 $1
+  echo "This is a test"
+  resetcolor2
+}
 
 boldtext() {
   echo -ne "\[\e[1m\]$1\[\033[0m\]"

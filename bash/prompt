@@ -74,5 +74,5 @@ if [ $(id -u) -eq 0 ]; then
   export PS1="\n\$(pwd_is_writable)`fgcolor $c_pri`\w `fgcolor $c_sec`\$(git_prompt)`resetcolor`\n`bgcolor $c_wrn``fgcolor 255` \u `resetcolor` `fgcolor $c_lt`\h `fgcolor $c_dk`\$(mytty) $TERMINATOR "
 else
   # Normal user
-  export PS1="\n`fgcolor 65`\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]\$(pwd_is_writable)`fgcolor $c_pri`\w `fgcolor $c_sec`\$(git_prompt)`resetcolor`\n`fgcolor $c_hi`\u `fgcolor $c_lt`\h `fgcolor $c_dk`\$(mytty) $TERMINATOR "
+  export PS1="\n`fgcolor $c_pri`\[\$(tput sc; rightprompt \"\$(mydate)\"; tput rc)\]\$(pwd_is_writable)`fgcolor $c_pri`\w `fgcolor $c_sec`\$(git_prompt)`resetcolor`\n`fgcolor $c_hi`\u `fgcolor $c_lt`\h `fgcolor $c_dk`\$(mytty) $TERMINATOR "
 fi
