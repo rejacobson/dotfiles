@@ -16,7 +16,8 @@ export c_lo=36
 export c_lt=30
 export c_dk=24
 export c_ok=70
-export c_wrn=160
+export c_wrn=184
+export c_bad=160
 
 function color.palette { # Preview the current color palette
   local space="          "
@@ -48,4 +49,5 @@ function color.palette { # Preview the current color palette
   echo "`color.bg $c_dk`$space`color.reset` `color.fg $c_dk`dark (\$c_dk) $c_dk`color.reset`"
   echo "`color.bg $c_ok`$space`color.reset` `color.fg $c_ok`ok (\$c_ok) $c_ok`color.reset`"
   echo "`color.bg $c_wrn`$space`color.reset` `color.fg $c_wrn`warning (\$c_wrn) $c_wrn`color.reset`"
+  echo "`color.bg $c_bad`$space`color.reset` `color.fg $c_bad`bad/danger (\$c_bad) $c_bad`color.reset`"
 }

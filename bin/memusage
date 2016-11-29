@@ -24,9 +24,9 @@ BAR_CHAR='|'
 GRAPH_W=$(expr `tput cols` / 2)
 LABEL_CLR=`color.fg $c_lt`
 MEM_USED_CLR="$c_ok"
-MEM_BUFF_CLR="$c_hi"
+MEM_BUFF_CLR="$c_wrn"
 MEM_FREE_CLR=0
-SWP_USED_CLR="$c_wrn"
+SWP_USED_CLR="$c_bad"
 SWP_FREE_CLR=0
 RST=`color.reset`
 
