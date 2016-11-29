@@ -1,0 +1,40 @@
+function color() { # auto complete helper, second argument is a grep against the function list
+  if [[ '' == "$@" ]]
+  then
+    echo "Parse Namespaced Functions List"
+    cat $BASH_SOURCE | grep "^function[^(]" | awk '{j=" USAGE:"; for (i=5; i<=NF; i++) j=j" "$i; print $2" "j}'
+  else
+    echo "Parse Functions Matching: $@"
+    cat $BASH_SOURCE | grep "^function[^(]" | awk '{j=" USAGE:"; for (i=5; i<=NF; i++) j=j" "$i; print $2" "j}' | grep $@
+  fi
+}
+
+function color.test() { # colortest N - Output text with the passed in color number
+  color.fg $1
+  echo "This is a test"
+  color.reset
+}
+
+function color.fg { # Foreground color
+  echo -ne "\e[38;5;$1m"
+}
+
+function color.bg { # Background color
+  echo -ne "\e[48;5;$1m"
+}
+
+function color.reset () { # Reset the color in an echo call
+  echo -ne '\e[0m'
+}
+
+function color.fg.prompt { # Foreground color in a prompt
+  echo -ne "\[\e[38;5;$1m\]"
+}
+
+function color.bg.prompt { # Background color in a prompt
+  echo -ne "\[\e[48;5;$1m\]"
+}
+
+function color.reset.prompt { # Reset the color in a prompt
+  echo -ne '\[\e[0m\]'
+}

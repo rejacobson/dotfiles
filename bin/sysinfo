@@ -1,11 +1,11 @@
 #!/bin/bash
 
-. ~/dotfiles/bash/colors
+. ~/dotfiles/bash/color
 . ~/dotfiles/bash/functions
 
-LBL_CLR="`fgcolor2 $c_sec`"
-VAL_CLR="`fgcolor2 $c_dk`"
-RST="`resetcolor2`"
+LBL_CLR="`color.fg $c_sec`"
+VAL_CLR="`color.fg $c_dk`"
+RST="`color.reset`"
 
 function print_info {
   local label="$1"

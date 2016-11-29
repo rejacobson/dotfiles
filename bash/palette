@@ -1,0 +1,37 @@
+export c_pri=38
+export c_pri_dk1=31
+export c_pri_dk2=24
+export c_pri_lt1=45
+export c_pri_lt2=51
+
+export c_sec=206
+export c_sec_dk1=199
+export c_sec_dk2=162
+export c_sec_lt1=213
+export c_sec_lt2=219
+
+export c_hi=99
+export c_lo=36
+
+export c_lt=30
+export c_md=240
+export c_dk=24
+export c_ok=72
+export c_wrn=196
+
+function color.palette { # Preview the current color palette
+  local space="          "
+
+  echo -e "`color.bg $c_pri`$space`color.reset` `color.fg $c_pri`primary $c_pri`color.reset`"
+  echo -e "`color.bg $c_sec`$space`color.reset` `color.fg $c_sec`secondary $c_sec`color.reset`"
+  echo -e "`color.bg $c_hi`$space`color.reset`" `color.fg $c_hi`highlight $c_hi`color.reset`
+  echo -e "`color.bg 65`$space`color.reset`" `color.fg 65`other 65`color.reset`
+
+  echo
+
+  echo "`color.bg $c_pri_lt2`$space`color.reset` `color.fg $c_pri_lt2`primary light 2 (\$c_pri_lt2) $c_pri_lt2`color.reset`"
+  echo "`color.bg $c_pri_lt1`$space`color.reset` `color.fg $c_pri_lt1`primary light 1 (\$c_pri_lt1) $c_pri_lt1`color.reset`"
+  echo -e "`color.bg $c_pri`$space`color.reset` `color.fg $c_pri`primary (\$c_pri) $c_pri`color.reset`"
+  echo -e "`color.bg $c_pri_dk1`$space`color.reset` `color.fg $c_pri_dk1`primary dark 1 (\$c_pri_dk1) $c_pri_dk1`color.reset`"
+  echo "`color.bg $c_pri_dk2`$space`color.reset` `color.fg $c_pri_dk2`primary dark 2 (\$c_pri_dk2) $c_pri_dk2`color.reset`"
+}

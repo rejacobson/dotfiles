@@ -1,13 +1,13 @@
 #!/bin/bash
 
-. ~/dotfiles/bash/colors
+. ~/dotfiles/bash/color
 
 echo
-echo -ne `fgcolor2 $c_pri`
+echo -ne `color.fg $c_pri`
 if [ `which figlet 2> /dev/null` ]; then
   figlet -w `tput cols` -f fender `hostname -s`
 else
   echo `hostname -s`
   echo
 fi
-echo -ne `resetcolor2`
+echo -ne `color.reset`

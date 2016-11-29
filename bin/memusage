@@ -4,7 +4,7 @@ if [ -z "`which free`" ]; then
   exit
 fi
 
-. ~/dotfiles/bash/colors
+. ~/dotfiles/bash/color
 
 function print_bar {
   local color=$1
@@ -12,7 +12,7 @@ function print_bar {
   local len=$3
   local v=$(printf "%-${len}s" "$char")
   if (( $len > 0 )); then
-    echo -en "$(fgcolor2 $color)${v// /$char}$(resetcolor2)"
+    echo -en "$(color.fg $color)${v// /$char}$(color.reset)"
   fi
 }
 
@@ -22,13 +22,13 @@ function round {
 
 BAR_CHAR='|'
 GRAPH_W=$(expr `tput cols` / 2)
-LABEL_CLR=`fgcolor2 $c_lt`
+LABEL_CLR=`color.fg $c_lt`
 MEM_USED_CLR="$c_ok"
 MEM_BUFF_CLR="$c_hi"
 MEM_FREE_CLR=0
 SWP_USED_CLR="$c_wrn"
 SWP_FREE_CLR=0
-RST=`resetcolor2`
+RST=`color.reset`
 
 # Memory
 MEM=(`free -m | grep Mem`)

@@ -1,20 +1,20 @@
 #!/bin/bash
 
-. ~/dotfiles/bash/colors
+. ~/dotfiles/bash/color
 
 ~/dotfiles/bin/banner
 
-echo -ne "`fgcolor2 $c_dk`"
+echo -ne "`color.fg $c_dk`"
 echo `uptime -p 2>/dev/null || uptime`
 echo
-echo -ne "`resetcolor2`"
+echo -ne "`color.reset`"
 
-echo -ne "`fgcolor2 $c_lt`"
+echo -ne "`color.fg $c_lt`"
 w -hsi 2>/dev/null || w -hi
-echo -ne "`resetcolor2`"
+echo -ne "`color.reset`"
 echo
 
-echo -ne `fgcolor2 $c_md`
+echo -ne `color.fg $c_md`
 IDENTS=`ssh-add -L`
 if [[ $IDENTS =~ 'no identities' ]]; then
   echo "$IDENTS"
@@ -23,7 +23,7 @@ else
 fi
 echo
 
-echo -ne `resetcolor2`
+echo -ne `color.reset`
 ~/dotfiles/bin/sysinfo
 ~/dotfiles/bin/memusage
 
