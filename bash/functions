@@ -1,3 +1,19 @@
 function trim {
   echo -n `sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' <<< "$1"`
 }
+
+function lad() { # Directories only
+  la "$@" | grep '^d'
+}
+
+function laf() { # Files only
+  la "$@" | grep -v '^d'
+}
+
+function laa() { # Directories first, files second
+  lad "$@" && laf "$@"
+}
+
+function lal() { # Paged la
+  la "$@" | less
+}

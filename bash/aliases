@@ -4,10 +4,7 @@ else
   alias la='LC_COLLATE=C ls -AlFh --color=always'
 fi
 
-alias lal='la | less'
-alias lad="la | grep '^d'"
-alias laf="la | grep -v '^d'"
-alias laa="lad && laf"
+# See bash/functions for additional 'la' style aliases
 
 alias tmux='tmux -2'
 
