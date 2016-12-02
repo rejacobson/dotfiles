@@ -17,3 +17,7 @@ function laa() { # Directories first, files second
 function lal() { # Paged la
   la "$@" | less
 }
+
+function loadlscolors() {
+  eval $(dircolors -b <(cat /etc/DIR_COLORS ~/dotfiles/bash/ls_colors))
+}

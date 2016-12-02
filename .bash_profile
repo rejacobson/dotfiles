@@ -30,6 +30,9 @@ if [ -d ~/.bash ]; then
   done
 fi
 
+# Load ls colors
+loadlscolors
+
 # Disable ctrl+s from sending XOFF
 [[ $- == *i* ]] && stty ixany
 [[ $- == *i* ]] && stty ixoff -ixon
