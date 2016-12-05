@@ -19,5 +19,7 @@ function lal() { # Paged la
 }
 
 function loadlscolors() {
-  eval $(dircolors -b <(cat /etc/DIR_COLORS ~/dotfiles/bash/ls_colors))
+  if command -v dircolors >/dev/null; then
+    eval $(dircolors -b <(cat /etc/DIR_COLORS ~/dotfiles/bash/ls_colors))
+  fi
 }
