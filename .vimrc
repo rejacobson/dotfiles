@@ -25,6 +25,12 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
+" resize splits quickly
+map = <c-w>+
+map - <c-w>-
+map + <c-w>>
+map _ <c-w><
+
 " General options
 set number      " Show line numbers on the side
 set hlsearch    " Highlight all search pattern matches
