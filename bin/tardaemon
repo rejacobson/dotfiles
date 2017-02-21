@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+[ ! -e ./.daemon-start ] && echo 'Not a game daemon directory' && exit
+
+if [ ! -e ./_gamefiles ]; then
+  ./.setup-gamefiles
+fi
+
+GAMENAME=${PWD##*/}
+SLUG_PATH="$HOME/projects/navi2/slugs"
+
+echo "Creating slug for $GAMENAME and moving it to $SLUG_PATH"
+
+mkdir -p $SLUG_PATH
+mkdir _tmp/
+cp -r _gamefiles _tmp/
+rsync -av _configfiles/* _tmp/_gamefiles/
+rsync -av --exclude=_* --exclude=.setup-gamefiles ./ _tmp/
+tar -cf BUILD.tar -C _tmp .
+gzip -c BUILD.tar > BUILD.tgz
+rm BUILD.tar
+rm -rf _tmp
+mv ./BUILD.tgz ${SLUG_PATH}/${GAMENAME}.tgz
