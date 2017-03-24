@@ -19,3 +19,9 @@ map <Leader>n :noh<CR>
 " Prevent pasting into a selection from overwriting the contents of the register
 " pgvy ==  'p' paste, 'gv' re-select what was originally selected, 'y' to copy it again
 xnoremap p pgvy
+
+" resize splits quickly
+map = <c-w>+
+map - <c-w>-
+map + <c-w>>
+map _ <c-w><
