@@ -1,8 +1,10 @@
-" Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 let mapleader=","
 
+" Use Vim settings, rather than Vi settings (much better!).
 set nocompatible
+
+" Turn off automatic detection of the filetype
 filetype off
 
 " Vundle package manager
@@ -12,51 +14,73 @@ source ~/.vim/vundle.plugins
 call vundle#end()
 filetype plugin indent on
 
-" Set the status bar
+" format the status bar
 set statusline=%f\ L\ %l,C\ %c\ (%p%%)\ %m
 
-" disable arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+" Show line numbers on the side
+set number
 
-" General options
-set number      " Show line numbers on the side
-set hlsearch    " Highlight all search pattern matches
-set showcmd     " Display info about the current command
-set showmode    " Indicates input or replace mode at bottom
-set incsearch   " Show matches as you type a search term
-set paste       " Retain tab and space indenting of pasted code
-set hidden      " Hide buffers instead of closing them.
-set so=14
+" Highlight all search pattern matches
+set hlsearch
+
+" Display info about the current command
+set showcmd
+
+" Indicates input or replace mode at bottom
+set showmode
+
+" Show matches as you type a search term
+set incsearch
+
+" nopaste because otherwise it doesn't allow for key bindings using imap
+set nopaste
+
+" Hide buffers instead of closing them.
+set hidden
+
+" scrolloff - sets number of lines that are visible below and above the cursor
+set so=10
+
+" set the position of new windows
 set splitbelow
 set splitright
+
+" file encoding
 set encoding=utf-8
 set fileencoding=utf-8
-set laststatus=2 " Always show the status line
+
+" Always show the status line
+set laststatus=2
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Tabs and spaces
+" how many columns a tab counts for
 set tabstop=2
+
+" how many columns text is indented with the reindent operations
 set shiftwidth=2
+
+" turn tabs into spaces
 set expandtab
 
-" Color scheme
+" force the old regexp engine. I had issues with performance using the newer
+" regexp version
 if exists("&re")
   set re=1
 endif
-syntax on       " Turn on syntax highlighting
+
+" use 256 colors
 set t_Co=256
+
+" use a dark background
 set background=dark
+
 "colorscheme kolor
 colorscheme Tomorrow-Night
+
+" Turn on syntax highlighting
+syntax on
 
 " Make trailing whitespace annoyingly highlighted.
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -66,15 +90,5 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+" markaby files should be highlighted as ruby code
 au BufNewFile,BufRead *.mab set filetype=ruby
-
-
-" Remove trailing spaces
-map <Leader><space> :%s/\s\+$//g<CR>
-
-" Press Leader Space to turn off highlighting and clear any message already displayed.
-map <Leader>n :noh<CR>
-
-" Prevent pasting into a selection from overwriting the contents of the register
-" pgvy ==  'p' paste, 'gv' re-select what was originally selected, 'y' to copy it again
-xnoremap p pgvy
