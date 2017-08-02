@@ -1,0 +1,68 @@
+#!/bin/bash
+
+function upsearch () {
+  test / == "$PWD" && return || test -f "$1" && echo "found: " "$1" && return || cd .. && upsearch "$1"
+}
+
+# Search for the directory containing .daemon-start
+upsearch '.daemon-start'
+
+pwd
+
+if [[ ! -d './_gamefiles' ]]; then
+  echo "No _gamefiles directory"
+  exit 1
+fi
+
+cd _gamefiles
+
+export HOMEDIR=`pwd`
+export APPDIR=/home/ryan/projects/hyrule
+export PORT=9000
+export TITLE="Test Server"
+export PUBLIC=0
+
+
+while [[ $# -gt 1 ]]
+do
+  key="$1"
+
+  case $key in
+
+    -t|--title)
+      TITLE="$2"
+      shift # past argument
+      ;;
+
+    -p|--port)
+      PORT="$2"
+      shift # past argument
+      ;;
+
+    -b|--public)
+      if [[ "$2" = "1" ]]; then
+        PUBLIC=1
+      fi
+      shift # past argument
+      ;;
+
+    *)
+      # unknown option
+      ;;
+  esac
+
+  shift # past argument or value
+done
+
+echo ''
+echo '==================== Running Daemon ========================='
+echo "TITLE: $TITLE"
+echo "PORT: $PORT"
+echo "PUBLIC: $PUBLIC"
+echo "HOMEDIR: $HOMEDIR"
+echo "APPDIR: $APPDIR"
+echo '============================================================='
+echo ''
+echo ''
+
+../.daemon-start
