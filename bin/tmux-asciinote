@@ -1,0 +1,11 @@
+#!/bin/bash
+
+tmux -2 new -s asciinote -d
+tmux send-keys 'cd ~/projects/asciinote ; foreman start' 'C-m'
+tmux split-window -h -p 50 bash
+tmux send-keys 'cd ~/projects/asciinote ; tail -f log/development.log log/stdout log/stderr' 'C-m'
+tmux split-window -v -p 50 bash
+tmux select-pane -t 0
+tmux split-window -v -p 50 bash
+tmux send-keys 'cd ~/projects/asciinote ; zeus start' 'C-m'
+tmux attach
