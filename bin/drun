@@ -12,7 +12,7 @@ PORTS=($(tr ' ' '\n' <<< "${PORTS[@]}" | sort -u | tr '\n' ' '))
 ARGS=
 
 for port in "${PORTS[@]}"; do
-  ARGS="$ARGS -p $port:$port"
+  ARGS="$ARGS -p ${port%/*}:$port"
 done
 
 CMD="docker run --rm -ti --name $NAME $ARGS $@ $NAME:latest"

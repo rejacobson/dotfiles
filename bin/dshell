@@ -8,7 +8,7 @@ fi
 DIR=$(pwd)
 NAME=$(basename "$DIR")
 
-CMD="docker exec -ti $NAME /bin/bash"
+CMD="docker exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" -ti $NAME /bin/bash"
 
 echo "========================================================================================================================"
 echo "$CMD"
