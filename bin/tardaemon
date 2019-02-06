@@ -10,16 +10,26 @@ fi
 
 GAMENAME=${PWD##*/}
 SLUG_PATH="$HOME/projects/navi2/slugs"
+STARTSTOP_SCRIPT_PATH="$HOME/projects/hyrule/binc/startup/$GAMENAME"
 
-echo "Creating slug for $GAMENAME and moving it to $SLUG_PATH"
+echo "========================================================="
+echo "Creating slug for $GAMENAME"
 
-mkdir -p $SLUG_PATH
 mkdir _tmp/
 cp -r _gamefiles _tmp/
 rsync -av _configfiles/* _tmp/_gamefiles/
-rsync -av --exclude=_* --exclude=.setup-gamefiles ./ _tmp/
+rsync -av --exclude=_* --exclude=.setup-gamefiles* --exclude=.daemon-st* ./ _tmp/
 tar -cf BUILD.tar -C _tmp .
 gzip -c BUILD.tar > BUILD.tgz
 rm BUILD.tar
 rm -rf _tmp
+
+echo "Moving slug to $SLUG_PATH"
+
+mkdir -p $SLUG_PATH
 mv ./BUILD.tgz ${SLUG_PATH}/${GAMENAME}.tgz
+
+echo "Copying start/stop scripts to $STARTSTOP_SCRIPT_PATH"
+
+mkdir -p "$STARTSTOP_SCRIPT_PATH"
+cp -f .daemon-start .daemon-stop "$STARTSTOP_SCRIPT_PATH"/

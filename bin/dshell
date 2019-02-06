@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [[ ! -f "Dockerfile" ]]; then
+  echo "Docker file not found: $(pwd)"
+  exit 1
+fi
+
+DIR=$(pwd)
+NAME=$(basename "$DIR")
+
+CMD="docker exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" -ti $NAME /bin/bash"
+
+echo "========================================================================================================================"
+echo "$CMD"
+echo "========================================================================================================================"
+
+$CMD
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+RUNNING=`tmux ls 2>/dev/null | grep asciinote`
+
+if [[ -z $RUNNING ]]; then
+  tmux -2 new -s asciinote -d
+  tmux send-keys 'cd ~/projects/asciinote ; foreman start' 'C-m'
+  tmux split-window -h -p 50 bash
+  tmux send-keys 'cd ~/projects/asciinote ; tail -f log/development.log log/stdout log/stderr' 'C-m'
+  tmux split-window -v -p 50 bash
+  tmux select-pane -t 0
+  tmux split-window -v -p 50 bash
+  tmux send-keys 'cd ~/projects/asciinote ; xvfb-run zeus start' 'C-m'
+  tmux attach
+else
+  tmux attach -d -t asciinote
+fi

@@ -16,18 +16,23 @@ esac
 ############################
 # Include Additional Scripts
 ############################
-for f in ~/dotfiles/bash.d/*; do
-  . $f
-done
+if [ "$(ls -A ~/dotfiles/bash.d/)" ]; then
+  for f in ~/dotfiles/bash.d/*; do
+    . $f
+  done
+fi
 
 ############################
 # Include Non Version
 # Controlled Scripts
 ############################
 if [ -d ~/.bash ]; then
-  for f in ~/.bash/*; do
-    . $f
-  done
+  if [ "$(ls -A ~/.bash/)" ]; then
+    for f in ~/.bash/*; do
+      echo "$f"
+      . $f
+    done
+  fi
 fi
 
 # Load ls colors

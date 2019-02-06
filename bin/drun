@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ ! -f ./Dockerfile ]]; then
+  echo "Dockerfile not found: $(pwd)"
+  exit 1
+fi
+
+DIR=$(pwd)
+NAME=$(basename "$DIR")
+PORTS=($(grep EXPOSE Dockerfile | sed 's/EXPOSE //'))
+PORTS=($(tr ' ' '\n' <<< "${PORTS[@]}" | sort -u | tr '\n' ' '))
+ARGS=
+
+for port in "${PORTS[@]}"; do
+  ARGS="$ARGS -p ${port%/*}:$port"
+done
+
+CMD="docker run --rm -ti --name $NAME $ARGS $@ $NAME:latest"
+
+echo "========================================================================================================================"
+echo "$CMD"
+echo "========================================================================================================================"
+
+$CMD

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+RUNNING=`tmux ls 2>/dev/null | grep kript`
+
+if [[ -z $RUNNING ]]; then
+  tmux -2 new -s kript -d
+  tmux send-keys 'cd ~/projects/kript ; foreman start' 'C-m'
+  tmux split-window -h -p 50 bash
+  tmux send-keys 'cd ~/projects/kript ; tail -f log/development.log log/stdout log/stderr' 'C-m'
+  tmux attach
+else
+  tmux attach -d -t kript
+fi
