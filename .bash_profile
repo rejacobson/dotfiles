@@ -63,7 +63,7 @@ HISTCONTROL=ignoreboth
 # Write to history before each command is executed
 PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 
-PATH=$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH
+PATH="$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 unset BUNDLE_GEMFILE
 
