@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
 import sys
+import signal
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 import BaseHTTPServer
-
 
 def test(HandlerClass=SimpleHTTPRequestHandler,
          ServerClass=BaseHTTPServer.HTTPServer):
@@ -29,8 +29,13 @@ def test(HandlerClass=SimpleHTTPRequestHandler,
 
     sa = httpd.socket.getsockname()
     print "Serving HTTP on", sa[0], "port", sa[1], "..."
+    print "Ctrl+c to exit"
+    signal.signal(signal.SIGINT, signal_handler)
     httpd.serve_forever()
 
+def signal_handler(sig, frame):
+  print('Exiting web server')
+  sys.exit(0)
 
 if __name__ == "__main__":
     test()
