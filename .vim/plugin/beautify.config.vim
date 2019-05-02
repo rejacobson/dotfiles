@@ -1,11 +1,11 @@
 " Beautify JS, CSS, HTML
-noremap <leader>a :Autoformat<CR>
+noremap <leader>ba :Autoformat<CR>
 
 " CSS
-vnoremap <leader>c :call RangeCSSBeautify()<CR>
+vnoremap <leader>bc :call RangeCSSBeautify()<CR>
 
 " HTML
-vnoremap <leader>h :call RangeHtmlBeautify()<CR>
+vnoremap <leader>bh :call RangeHtmlBeautify()<CR>
 
 " JS
-vnoremap <leader>j :call RangeJsBeautify()<CR>
+vnoremap <leader>bj :call RangeJsBeautify()<CR>
