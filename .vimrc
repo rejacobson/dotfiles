@@ -4,9 +4,6 @@ let mapleader=","
 " Use Vim settings, rather than Vi settings (much better!).
 set nocompatible
 
-" Turn off automatic detection of the filetype
-filetype off
-
 " Vundle package manager
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
