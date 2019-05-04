@@ -1,41 +1,24 @@
-#!/usr/bin/python
+#!/usr/bin/env ruby
 
-import sys
-import signal
-from SimpleHTTPServer import SimpleHTTPRequestHandler
-import BaseHTTPServer
+require 'openssl'
+require 'webrick'
+require 'webrick/https'
 
-def test(HandlerClass=SimpleHTTPRequestHandler,
-         ServerClass=BaseHTTPServer.HTTPServer):
+include WEBrick
 
-    protocol = "HTTP/1.0"
-    host = ''
-    port = 8080
-    if len(sys.argv) > 1:
-        arg = sys.argv[1]
-        if ':' in arg:
-            host, port = arg.split(':')
-            port = int(port)
-        else:
-            try:
-                port = int(sys.argv[1])
-            except:
-                host = sys.argv[1]
+port = 8080
+cert = OpenSSL::X509::Certificate.new File.read("#{Dir.home}/.ssl/fullchain.pem")
+pkey = OpenSSL::PKey::RSA.new File.read("#{Dir.home}/.ssl/privkey.pem")
 
-    server_address = (host, port)
+server = HTTPServer.new(
+  :Port => port,
+  :DocumentRoot => Dir::pwd,
+	:SSLEnable => true,
+  :SSLPrivateKey => pkey,
+  :SSLCertificate => cert,
+	:SSLCertName => [["CN", WEBrick::Utils::getservername]]
+)
 
-    HandlerClass.protocol_version = protocol
-    httpd = ServerClass(server_address, HandlerClass)
+trap("INT"){ server.shutdown }
 
-    sa = httpd.socket.getsockname()
-    print "Serving HTTP on", sa[0], "port", sa[1], "..."
-    print "Ctrl+c to exit"
-    signal.signal(signal.SIGINT, signal_handler)
-    httpd.serve_forever()
-
-def signal_handler(sig, frame):
-  print('Exiting web server')
-  sys.exit(0)
-
-if __name__ == "__main__":
-    test()
+server.start
