@@ -8,6 +8,7 @@ if [[ -z $RUNNING ]]; then
   tmux split-window -h -p 50 bash
   tmux send-keys 'cd ~/projects/asciinote ; tail -f log/development.log log/stdout log/stderr' 'C-m'
   tmux split-window -v -p 50 bash
+  tmux send-keys 'cd ~/projects/asciinote' 'C-m'
   tmux select-pane -t 0
   tmux split-window -v -p 50 bash
   tmux send-keys 'cd ~/projects/asciinote ; xvfb-run zeus start' 'C-m'
