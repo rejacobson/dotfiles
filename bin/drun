@@ -9,7 +9,7 @@ DIR=$(pwd)
 NAME=$(basename "$DIR")
 PORTS=($(grep EXPOSE Dockerfile | sed 's/EXPOSE //'))
 PORTS=($(tr ' ' '\n' <<< "${PORTS[@]}" | sort -u | tr '\n' ' '))
-ARGS=
+ARGS="-e GRRYNO_HOSTNAME=localhost -e XYZ_AUTH_TOKEN=asdf"
 
 for port in "${PORTS[@]}"; do
   ARGS="$ARGS -p ${port%/*}:$port"
@@ -17,8 +17,11 @@ done
 
 CMD="docker run --rm -ti --name $NAME $ARGS $@ $NAME:latest"
 
-echo "========================================================================================================================"
-echo "$CMD"
-echo "========================================================================================================================"
+# Output the command if not running as a daemon
+if [[ ! "$CMD" =~ "--detach" ]]; then
+  echo "========================================================================================================================"
+  echo "$CMD"
+  echo "========================================================================================================================"
+fi
 
 $CMD
