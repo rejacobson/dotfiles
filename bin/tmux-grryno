@@ -4,14 +4,12 @@ RUNNING=`tmux ls 2>/dev/null | grep grryno`
 
 if [[ -z $RUNNING ]]; then
   tmux -2 new -s grryno -d
-  tmux send-keys 'cd ~/projects/grryno/web ; foreman start web' 'C-m'
+  #tmux send-keys 'cd ~/projects/grryno/web ; /usr/local/bin/remote_syslog -D' 'C-m'
+  tmux send-keys 'cd ~/projects/grryno/web ; tail -f log/development.log log/std*' 'C-m'
   tmux split-window -h -p 50 bash
-  tmux send-keys 'cd ~/projects/grryno/web ; foreman start delayed_job' 'C-m'
+  tmux send-keys 'cd ~/projects/grryno/web ; foreman start' 'C-m'
   tmux split-window -v -p 50 bash
-  tmux send-keys 'cd ~/projects/grryno/web' 'C-m'
-  tmux select-pane -t 0
-  tmux split-window -v -p 50 bash
-  tmux send-keys 'cd ~/projects/grryno/web ; xvfb-run zeus start' 'C-m'
+  tmux send-keys 'cd ~/projects/grryno/ftp-server ; drun' 'C-m'
   tmux attach
 else
   tmux attach -d -t grryno
