@@ -1,5 +1,3 @@
 #!/bin/bash
 
-CMD=$(aws ecr get-login --no-include-email --region us-east-1)
-
-$CMD
+aws ecr get-login --no-include-email --region us-east-1 --profile default | bash
