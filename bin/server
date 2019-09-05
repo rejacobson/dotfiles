@@ -6,9 +6,11 @@ require 'webrick/https'
 
 include WEBrick
 
-port = 8080
+port = ENV['PORT'] || 8080
 cert = OpenSSL::X509::Certificate.new File.read("#{Dir.home}/.ssl/fullchain.pem")
 pkey = OpenSSL::PKey::RSA.new File.read("#{Dir.home}/.ssl/privkey.pem")
+
+puts "#{WEBrick::Utils::getservername}:#{port}"
 
 server = HTTPServer.new(
   :Port => port,
