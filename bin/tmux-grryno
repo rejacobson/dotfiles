@@ -10,6 +10,9 @@ if [[ -z $RUNNING ]]; then
   tmux send-keys 'cd ~/projects/grryno/web ; foreman start' 'C-m'
   tmux split-window -v -p 50 bash
   tmux send-keys 'cd ~/projects/grryno/ftp-server ; drun' 'C-m'
+  tmux select-pane -t 0
+  tmux split-window -v -p 50 bash
+  tmux send-keys 'cd ~/projects/grryno/web ; rails c' 'C-m'
   tmux attach
 else
   tmux attach -d -t grryno
