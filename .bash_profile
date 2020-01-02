@@ -54,19 +54,28 @@ shopt -s autocd # A command name that is the name of a dir is executed as, cd di
 shopt -s cdspell # Minor errors in the spelling of a directory will be corrected
 shopt -s dirspell # Attempts spelling correction on directory names during word completion
 shopt -s dotglob # Includes filenames beginning with a ‘.’ in the results of filename expansion
-shopt -s histappend # Append to .bash_history, don't overwrite it
 shopt -s nocaseglob # Matches filenames in a case-insensitive fashion when performing filename expansion
 
-# Maxiumum history file size
-HISTFILESIZE=10000
-HISTSIZE=10000
+# Eternal bash history.
+# https://stackoverflow.com/a/19533853/834258
+# ---------------------
+# Undocumented feature which sets the size to "unlimited".
+# http://stackoverflow.com/questions/9457233/unlimited-bash-history
+HISTFILESIZE=
+HISTSIZE=
+HISTTIMEFORMAT='[%F %T] '
+
+# Change the file location because certain bash sessions truncate .bash_history file upon close.
+# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+HISTFILE=~/.bash_eternal_history
+
+# Force prompt to write history after every command.
+# http://superuser.com/questions/20900/bash-history-loss
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Ignore commands that start with a space
 # Ignore consecutive duplicate commands
 HISTCONTROL=ignoreboth
-
-# Write to history before each command is executed
-PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"
 
 PATH="$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
