@@ -9,7 +9,7 @@ DIR=$(pwd)
 NAME=$(basename "$DIR")
 PORTS=($(grep EXPOSE Dockerfile | sed 's/EXPOSE //'))
 PORTS=($(tr ' ' '\n' <<< "${PORTS[@]}" | sort -u | tr '\n' ' '))
-ARGS="-e GRRYNO_HOSTNAME=localhost -e XYZ_AUTH_TOKEN=asdf"
+ARGS="-e GRRYNO_HOSTNAME=localhost -e XYZ_AUTH_TOKEN=asdf -e KEY=$(base64 -w 0 /home/ryan/.ssl/privkey.pem) -e CRT=$(base64 -w 0 /home/ryan/.ssl/fullchain.pem)"
 
 for port in "${PORTS[@]}"; do
   ARGS="$ARGS -p ${port%/*}:$port"
