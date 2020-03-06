@@ -1,0 +1,25 @@
+#!/bin/bash
+
+games=$(find /home/ryan/projects/grryno/game-servers/* -maxdepth 0 -type d -not -path '*/\.*')
+failed=
+
+for f in $games; do
+  name=$(basename $f)
+
+  cd "$f"
+
+  echo "################################################################################"
+  echo "$name"
+  echo "################################################################################"
+
+  if ! dpush; then
+    failed="$failed $name"
+  fi
+done
+
+echo
+echo
+echo "================================================================================"
+echo "Failed to push:"
+echo $failed
+echo "================================================================================"

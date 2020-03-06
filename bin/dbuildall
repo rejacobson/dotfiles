@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set +e
+
+games="/home/ryan/projects/grryno/api-server /home/ryan/projects/grryno/steamcmd $(find /home/ryan/projects/grryno/game-servers/* -maxdepth 0 -type d -not -path '*/\.*')"
+failed=
+
+for f in $games; do
+  name=$(basename $f)
+
+  cd "$f"
+
+  echo
+  echo
+  echo "################################################################################"
+  echo "$name"
+  echo "################################################################################"
+
+  if ! dbuild; then
+    failed="$failed $name"
+  fi
+done
+
+echo
+echo
+echo "================================================================================"
+echo "Failed to build:"
+echo $failed
+echo "================================================================================"
