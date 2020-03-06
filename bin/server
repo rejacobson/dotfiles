@@ -15,7 +15,7 @@ puts "#{WEBrick::Utils::getservername}:#{port}"
 server = HTTPServer.new(
   :Port => port,
   :DocumentRoot => Dir::pwd,
-	:SSLEnable => true,
+	:SSLEnable => false,
   :SSLPrivateKey => pkey,
   :SSLCertificate => cert,
 	:SSLCertName => [["CN", WEBrick::Utils::getservername]]
