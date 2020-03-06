@@ -8,4 +8,7 @@ fi
 DIR=$(pwd)
 NAME=$(basename "$DIR")
 
-docker build -t $NAME .
+echo "docker build "$@" -t $NAME ."
+echo
+
+docker build "$@" -t $NAME .

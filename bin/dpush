@@ -5,7 +5,7 @@ NAME=$(basename "$DIR")
 
 docker rmi 166400288852.dkr.ecr.us-east-1.amazonaws.com/$NAME:latest \
 
-dbuild \
+dbuild "$@" \
   && dlogin \
   && docker tag $NAME:latest 166400288852.dkr.ecr.us-east-1.amazonaws.com/$NAME:latest \
   && docker push 166400288852.dkr.ecr.us-east-1.amazonaws.com/$NAME:latest
