@@ -1,0 +1,17 @@
+#!/bin/bash
+
+RUNNING=`tmux ls 2>/dev/null | grep appswithoutads`
+
+if [[ -z $RUNNING ]]; then
+  tmux -2 new -s appswithoutads -d
+  tmux send-keys 'cd ~/projects/appswithoutads ; foreman start' 'C-m'
+  tmux split-window -h -p 50 bash
+  tmux send-keys 'cd ~/projects/appswithoutads ; tail -f log/development.log log/stdout log/stderr' 'C-m'
+  tmux split-window -v -p 50 bash
+  tmux select-pane -t 0
+  tmux split-window -v -p 50 bash
+  tmux send-keys 'cd ~/projects/appswithoutads ; xvfb-run zeus start' 'C-m'
+  tmux attach
+else
+  tmux attach -d -t appswithoutads
+fi

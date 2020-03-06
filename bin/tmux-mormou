@@ -1,0 +1,18 @@
+#!/bin/bash
+
+RUNNING=`tmux ls 2>/dev/null | grep mormou`
+
+if [[ -z $RUNNING ]]; then
+  tmux -2 new -s mormou -d
+  tmux send-keys 'cd ~/projects/mormou/web ; tail -f log/development.log log/std*' 'C-m'
+  tmux split-window -h -p 50 bash
+  tmux send-keys 'cd ~/projects/mormou/web ; rails s' 'C-m'
+  tmux split-window -v -p 50 bash
+  tmux send-keys 'cd ~/projects/mormou/web' 'C-m'
+  tmux select-pane -t 0
+  tmux split-window -v -p 50 bash
+  tmux send-keys 'cd ~/projects/mormou/web ; rails c' 'C-m'
+  tmux attach
+else
+  tmux attach -d -t mormou
+fi
