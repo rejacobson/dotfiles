@@ -87,5 +87,10 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+" Make tabs annoyingly highlighted
+highlight SpecialKey ctermfg=1
+set list
+set listchars=tab:T>
+
 " markaby files should be highlighted as ruby code
 au BufNewFile,BufRead *.mab set filetype=ruby

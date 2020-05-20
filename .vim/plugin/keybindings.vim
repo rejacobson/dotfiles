@@ -10,8 +10,13 @@ imap <right> <nop>
 
 inoremap kj <Esc>
 
-" Remove trailing spaces
-map <Leader><space> :%s/\s\+$//g<CR>
+" Remove trailing spaces and replace tabs with 2 spaces
+map <Leader><space> :exec CleanupTabsAndSpaces()<CR>
+
+function CleanupTabsAndSpaces()
+  :silent! %s/\s\+$//g
+  :silent! %s/\t/  /g
+endfunction
 
 " Press Leader Space to turn off highlighting and clear any message already displayed.
 map <Leader>n :noh<CR>
