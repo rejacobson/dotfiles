@@ -1,6 +1,7 @@
 [user]
   name = Ryan Jacobson
-	email = rejacobson@gmail.com
+  email = rejacobson@gmail.com
+
 [alias]
   co = checkout
   st = status
@@ -8,26 +9,43 @@
   todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   tags = tag --sort version:refname
+
 [apply]
   whitespace = nowarn
+
 [color]
   branch = auto
   diff = auto
   status = auto
+
 [color "branch"]
   current = yellow reverse
   local = yellow
   remote = green
+
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
   old = red bold
   new = green bold
+
 [color "status"]
   added = green
   changed = red
   untracked = cyan
+
 [push]
   default = simple
+
 [core]
   excludesfile = ~/.gitignore
+  pager = delta
+
+[delta]
+  plus-style = "syntax #012800"
+  minus-style = "syntax #340001"
+  syntax-theme = Monokai Extended
+  navigate = true
+
+[interactive]
+  diffFilter = delta --color-only
