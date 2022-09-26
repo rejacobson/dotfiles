@@ -42,10 +42,13 @@
   pager = delta
 
 [delta]
-  plus-style = "syntax #012800"
+  plus-style = "syntax #014400"
   minus-style = "syntax #340001"
   syntax-theme = Monokai Extended
   navigate = true
+  side-by-side = true
+  file-decoration-style = "#606018" "ul ol"
+  file-style = 255 bold "#2050c0"
 
 [interactive]
   diffFilter = delta --color-only
