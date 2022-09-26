@@ -9,7 +9,12 @@ DIR=$(pwd)
 NAME=$(basename "$DIR")
 PORTS=($(grep EXPOSE Dockerfile | sed 's/EXPOSE //'))
 PORTS=($(tr ' ' '\n' <<< "${PORTS[@]}" | sort -u | tr '\n' ' '))
-ARGS="-e GRRYNO_HOSTNAME=localhost -e XYZ_AUTH_TOKEN=asdf -e KEY=$(base64 -w 0 /home/ryan/.ssl/privkey.pem) -e CRT=$(base64 -w 0 /home/ryan/.ssl/fullchain.pem)"
+
+S3=$(cat ~/.aws/credentials | grep s3 -A 2)
+KEY_ID=$(echo "$S3" | grep aws_access_key_id | awk '{print $3}')
+SECRET_KEY=$(echo "$S3" | grep aws_secret_access_key | awk '{print $3}')
+
+ARGS="-e HOSTNAME=localhost -e XYZ_AUTH_TOKEN=asdf -e WEB_API_ORIGIN=https://devel.bugfarmer.com:8100 -e KEY=$(cat /home/ryan/.ssl/privkey.pem | gzip | base64 -w0) -e CRT=$(cat /home/ryan/.ssl/fullchain.pem | gzip | base64 -w0) -e AWS_S3_SECRET_ACCESS_KEY=$SECRET_KEY -e AWS_S3_ACCESS_KEY_ID=$KEY_ID"
 
 for port in "${PORTS[@]}"; do
   ARGS="$ARGS -p ${port%/*}:$port"
@@ -24,4 +29,5 @@ if [[ ! "$CMD" =~ "--detach" ]]; then
   echo "========================================================================================================================"
 fi
 
-$CMD
+#$CMD
+docker run --rm -ti --name $NAME $ARGS "$@" $NAME:latest

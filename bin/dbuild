@@ -11,4 +11,6 @@ NAME=$(basename "$DIR")
 echo "docker build "$@" -t $NAME ."
 echo
 
+dlogin
+
 docker build "$@" -t $NAME .
