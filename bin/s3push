@@ -1,0 +1,22 @@
+#!/bin/bash
+
+DIR=$(pwd)
+NAME=$(basename "$DIR")
+BUCKET='grryno-system'
+FILE=$1
+FILE=$(echo ${FILE#*/})
+FILE_PATH="$DIR/$FILE"
+
+if [[ -z "$FILE" ]]; then
+  echo "No file to upload was specified"
+  exit 1
+fi
+
+if [[ ! -f "$FILE_PATH" ]]; then
+  echo "This file does not exist: $FILE_PATH"
+  exit 1
+fi
+
+echo "/usr/bin/aws s3 cp \"$FILE_PATH\" \"s3://$BUCKET/$FILE\" --profile s3 --dryrun"
+
+aws s3 cp "$FILE_PATH" "s3://$BUCKET/$FILE" --profile s3 --region us-east-1
