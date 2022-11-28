@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function upsearch () {
   test / == "$PWD" && return || test -f "$1" && echo "found: " "$1" && return || cd .. && upsearch "$1"

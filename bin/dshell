@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ ! -f "Dockerfile" ]]; then
   echo "Docker file not found: $(pwd)"
@@ -8,7 +8,7 @@ fi
 DIR=$(pwd)
 NAME=$(basename "$DIR")
 
-CMD="docker exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" -ti $NAME /bin/bash"
+CMD="docker exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" -ti $NAME /usr/bin/env bash"
 
 echo "========================================================================================================================"
 echo "$CMD"
