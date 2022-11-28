@@ -79,6 +79,10 @@ HISTCONTROL=ignoreboth
 
 PATH="$HOME/bin:$HOME/dotfiles/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
+if [[ $platform = 'osx' ]]; then
+  PATH="/opt/homebrew/bin:$PATH"
+fi
+
 unset BUNDLE_GEMFILE
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
