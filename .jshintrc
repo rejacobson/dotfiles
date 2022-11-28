@@ -1,3 +1,4 @@
 {
-  "esnext": true
+  "esversion": 8,
+  "-W014": true
 }
