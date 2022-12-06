@@ -4,7 +4,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 cd "$DIR"
 
-FILES=(.bashrc .bash_profile .config/cheat .gemrc .gitconfig .inputrc .jshintrc .mostrc .tmux.conf .vim .vimrc)
+FILES=(.bashrc .bash_profile .config/cheat .gemrc .gitconfig .gitignore .inputrc .jshintrc .mostrc .tmux.conf .vim .vimrc)
 
 for file in ${FILES[*]}
 do
