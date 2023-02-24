@@ -2,10 +2,15 @@
 
 DIR=$(pwd)
 NAME=$(basename "$DIR")
-BUCKET='grryno-system'
-FILE=$1
+BUCKET=$1
+FILE=$2
 FILE=$(echo ${FILE#*/})
 FILE_PATH="$DIR/$FILE"
+
+if [[ -z "$BUCKET" ]]; then
+  echo "No bucket specified"
+  exit 1
+fi
 
 if [[ -z "$FILE" ]]; then
   echo "No file to upload was specified"
