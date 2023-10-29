@@ -22,6 +22,6 @@ if [[ ! -f "$FILE_PATH" ]]; then
   exit 1
 fi
 
-echo "/usr/bin/aws s3 cp \"$FILE_PATH\" \"s3://$BUCKET/$FILE\" --profile s3 --dryrun"
+echo "aws s3 cp \"$FILE_PATH\" \"s3://$BUCKET/$FILE\" --profile s3 --region us-east-1"
 
 aws s3 cp "$FILE_PATH" "s3://$BUCKET/$FILE" --profile s3 --region us-east-1

@@ -15,7 +15,8 @@ for port in "${PORTS[@]}"; do
   ARGS="$ARGS -p ${port%/*}:$port"
 done
 
-CMD="docker run --rm -ti --network grryno-web_mynetwork --name $NAME $ARGS $@ $NAME:latest"
+#CMD="docker run --rm -ti --network grryno-web_mynetwork --name $NAME $ARGS $@ $NAME:latest"
+CMD="docker run --rm -ti --name $NAME $ARGS $@ $NAME:latest"
 
 # Output the command if not running as a daemon
 if [[ ! "$CMD" =~ "--detach" ]]; then
@@ -24,4 +25,5 @@ if [[ ! "$CMD" =~ "--detach" ]]; then
   echo "========================================================================================================================"
 fi
 
-docker run --rm -ti --network grryno-web_mynetwork --name $NAME $ARGS "$@" $NAME:latest
+#docker run --rm -ti --network grryno-web_mynetwork --name $NAME $ARGS "$@" $NAME:latest
+docker run --rm -ti --name $NAME $ARGS "$@" $NAME:latest

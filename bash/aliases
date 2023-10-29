@@ -13,3 +13,5 @@ alias fuck='sudo $(history -p \!\!)'
 alias vimp='vim +CtrlP'
 
 alias run="./run"
+
+alias dc="docker compose"

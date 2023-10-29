@@ -6,7 +6,7 @@ if [[ ! -f ./Dockerfile ]]; then
 fi
 
 DIR=$(pwd)
-NAME=$(basename "$DIR")
+NAME="${NAME:-$(basename "$DIR")}"
 PORTS=($(grep EXPOSE Dockerfile | sed 's/EXPOSE //'))
 PORTS=($(tr ' ' '\n' <<< "${PORTS[@]}" | sort -u | tr '\n' ' '))
 
@@ -20,7 +20,8 @@ for port in "${PORTS[@]}"; do
   ARGS="$ARGS -p ${port%/*}:$port"
 done
 
-CMD="docker run --rm -ti --network grryno-web_mynetwork --name $NAME $ARGS $@ $NAME:latest"
+#CMD="docker run --rm -ti --network grryno-web_mynetwork --name $NAME $ARGS $@ $NAME:latest"
+CMD="docker run --rm -ti --name $NAME $ARGS $@ $NAME:latest"
 
 # Output the command if not running as a daemon
 if [[ ! "$CMD" =~ "--detach" ]]; then
@@ -30,4 +31,5 @@ if [[ ! "$CMD" =~ "--detach" ]]; then
 fi
 
 #$CMD
-docker run --rm -ti --network grryno-web_mynetwork --name $NAME $ARGS "$@" $NAME:latest
+#docker run --rm -ti --network grryno-web_mynetwork --name $NAME $ARGS "$@" $NAME:latest
+docker run --rm -ti --name $NAME $ARGS "$@" $NAME:latest
