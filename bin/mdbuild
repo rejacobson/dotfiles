@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ ! -f ./Dockerfile ]]; then
+  echo "Not in a Docker project directory: $(pwd)"
+  exit 1
+fi
+
+DIR=$(pwd)
+NAME=$(basename "$DIR")
+
+echo "docker buildx build -t 166400288852.dkr.ecr.us-east-1.amazonaws.com/$NAME:latest --platform linux/amd64,linux/arm64 --push "$@" ."
+echo
+
+dlogin
+docker buildx build -t 166400288852.dkr.ecr.us-east-1.amazonaws.com/$NAME:latest --platform linux/amd64,linux/arm64 --push "$@" .
