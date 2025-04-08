@@ -8,17 +8,17 @@ include WEBrick
 
 port = ENV['PORT'] || 8080
 cert = OpenSSL::X509::Certificate.new File.read("#{Dir.home}/.ssl/fullchain.pem")
-pkey = OpenSSL::PKey::RSA.new File.read("#{Dir.home}/.ssl/privkey.pem")
+pkey = OpenSSL::PKey::EC.new File.read("#{Dir.home}/.ssl/privkey.pem")
 
 puts "#{WEBrick::Utils::getservername}:#{port}"
 
 server = HTTPServer.new(
   :Port => port,
   :DocumentRoot => Dir::pwd,
-	:SSLEnable => true,
+  :SSLEnable => true,
   :SSLPrivateKey => pkey,
   :SSLCertificate => cert,
-	:SSLCertName => [["CN", WEBrick::Utils::getservername]]
+  :SSLCertName => [["CN", WEBrick::Utils::getservername]]
 )
 
 trap("INT"){ server.shutdown }

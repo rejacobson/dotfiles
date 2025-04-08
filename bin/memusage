@@ -45,18 +45,22 @@ MEM_BUFF_BAR=`print_bar $MEM_BUFF_CLR $BAR_CHAR $MEM_BUFF`
 MEM_FREE_BAR=`print_bar $MEM_FREE_CLR $BAR_CHAR $MEM_FREE`
 MEM_BAR="${MEM_USED_BAR}${MEM_BUFF_BAR}${MEM_FREE_BAR}"
 
+printf "${LABEL_CLR}Mem[${RST}%-${GRAPH_W}s%s${LABEL_CLR}] ${MEM_TOTAL}${RST}\n" $MEM_BAR
+
 # Swap
 SWP=(`free -m | grep Swap`)
 SWP_TOTAL="${SWP[1]}"
-SWP_DIV=`bc -l <<< "$SWP_TOTAL / $GRAPH_W"`
-SWP_USED=`round $(bc -l <<< "${SWP[2]} / $SWP_DIV") 0`
-SWP_FREE=`round $(bc -l <<< "${SWP[3]} / $SWP_DIV") 0`
 
-SWP_USED_BAR=`print_bar $SWP_USED_CLR $BAR_CHAR $SWP_USED`
-SWP_FREE_BAR=`print_bar $SWP_FREE_CLR $BAR_CHAR $SWP_FREE`
-SWP_BAR="${SWP_USED_BAR}${SWP_FREE_BAR}"
+if [[ $SWP_TOTAL != 0 ]]; then
+  SWP_DIV=`bc -l <<< "$SWP_TOTAL / $GRAPH_W"`
+  SWP_USED=`round $(bc -l <<< "${SWP[2]} / $SWP_DIV") 0`
+  SWP_FREE=`round $(bc -l <<< "${SWP[3]} / $SWP_DIV") 0`
 
-printf "${LABEL_CLR}Mem[${RST}%-${GRAPH_W}s%s${LABEL_CLR}] ${MEM_TOTAL}${RST}\n" $MEM_BAR
-printf "${LABEL_CLR}Swp[${RST}%-${GRAPH_W}s%s${LABEL_CLR}] ${SWP_TOTAL}${RST}\n" $SWP_BAR
+  SWP_USED_BAR=`print_bar $SWP_USED_CLR $BAR_CHAR $SWP_USED`
+  SWP_FREE_BAR=`print_bar $SWP_FREE_CLR $BAR_CHAR $SWP_FREE`
+  SWP_BAR="${SWP_USED_BAR}${SWP_FREE_BAR}"
+
+  printf "${LABEL_CLR}Swp[${RST}%-${GRAPH_W}s%s${LABEL_CLR}] ${SWP_TOTAL}${RST}\n" $SWP_BAR
+fi
 
 echo
