@@ -1,0 +1,200 @@
+approvals_reviewer = "user"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+model = "gpt-5.6-sol"
+
+model_reasoning_effort = "medium"
+notify = ["/Users/ryan/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+service_tier = "priority"
+
+[features]
+hooks = true
+js_repl = false
+memories = true
+
+[projects."/Users/ryan"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Projects/more-minions"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Projects/mazegame"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Documents/Codex/2026-09-04/i-he"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Projects/new_web_app"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Documents/Codex/2026-09-04/are"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Documents/Codex/2026-09-05/i-h"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Documents/Codex/2026-09-05/i-h/work/runner-smoke"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/.local/state/discord-codex-runner/workspace"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Projects/diablo-like-game"]
+trust_level = "trusted"
+
+[projects."/private/var/folders/dd/6h05jky12rv_2sj11j0sn_tc0000gn/T/discord-remote-test-GuP1Ej"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Projects"]
+trust_level = "trusted"
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "model", "reasoning", "project-name", "run-state", "context-remaining", "context-used", "five-hour-limit", "used-tokens"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 3
+gpt-6-astra = 4
+
+[plugins."atlassian-rovo@openai-curated"]
+enabled = true
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."notion@openai-curated"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+# GSD Agent Configuration — managed by gsd-core installer
+# GSD codex_hooks ownership: section
+
+[agents]
+max_depth = 1
+
+[hooks.state]
+
+[hooks.state."/Users/ryan/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:8099e7bba084f0865add406b61b4d40e267088c22f6f6180a5e62a5fdbcc438e"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:26b39391f5a9fa698f378ac687e351e95dc5e226093fc386363ac63b76b49014"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:e0798a367c879da5ac590cc83eac26b6c1d339da4595f295954e121433c6456d"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:61ee8d62405628b116772c6cb2280948866112d0d747d8e4d2a620b0178a8b62"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:pre_compact:0:0"]
+trusted_hash = "sha256:8451a8e44061b2fadf22387143d03aa2adb69d6c03388c7e9126b119acabfbfd"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:post_compact:0:0"]
+trusted_hash = "sha256:7566650ab9c7ecab615e2ebf6829e1b009c1814f5ea1c7deb2d2d40e1003532c"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:d2393e5c9889b60862800e498f67b88c78ef99f2b2f1f9ee4803a2356493152f"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:cc05891fd67a04d6b652a7d899b5f4c1bd32baf40252ca10da784a75366bdfff"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:subagent_stop:0:0"]
+trusted_hash = "sha256:0f69d050fd45ae4d8c43bbc1333b03f76cbbf47dce9a716b82294f60a5027deb"
+
+[hooks.state."/Users/ryan/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:65f02b92856262624cf5c62eedb51dd4325afdef546c4cab18b58df5a706cf1b"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/ryan/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/ryan/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/ryan/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.901.51231"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/ryan/.codex/plugins/cache/openai-bundled/browser/26.901.51231/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/ryan/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[mcp_servers.atlassian-direct]
+url = "https://mcp.atlassian.com/v1/mcp/authv2"
+
+[mcp_servers.discord-personal]
+command = "/opt/homebrew/bin/node"
+args = ["/Users/ryan/Projects/discord-codex-runner/src/mcp.mjs"]
+
+[desktop]
+conversationDetailMode = "STEPS_PROSE"
+ambient-suggestions-enabled = true
+followUpQueueMode = "queue"
+appearanceTheme = "dark"
+selected-avatar-id = "dewey"
+
+[memories]
+generate_memories = true
+use_memories = true

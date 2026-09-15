@@ -95,3 +95,7 @@ fi
 
 ~/dotfiles/bin/motd
 
+
+# >>> Codex installer >>>
+export PATH="/Users/ryan/.local/bin:$PATH"
+# <<< Codex installer <<<
