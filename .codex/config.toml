@@ -1,16 +1,19 @@
 approvals_reviewer = "user"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
-model = "gpt-5.6-sol"
+model = "gpt-6.1-sol"
 
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
+model_verbosity = "low"
+tool_output_token_limit = 4000
+model_auto_compact_token_limit = 180000
 notify = ["/Users/ryan/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
-service_tier = "priority"
 
 [features]
 hooks = true
 js_repl = false
 memories = true
+multi_agent = true
 
 [projects."/Users/ryan"]
 trust_level = "trusted"
@@ -51,9 +54,17 @@ trust_level = "trusted"
 [projects."/Users/ryan/Projects"]
 trust_level = "trusted"
 
+[projects."/Users/ryan/Documents/Codex/2026-09-19/referenced-chatgpt-conversation-this-is-an"]
+trust_level = "trusted"
+
+[projects."/Users/ryan/Documents/Codex/2026-09-26/referenced-chatgpt-conversation-this-is-an"]
+trust_level = "trusted"
+
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "model", "reasoning", "project-name", "run-state", "context-remaining", "context-used", "five-hour-limit", "used-tokens"]
 status_line_use_colors = true
+screen_reader_detection_done = true
+resume_cwd = "current"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 3
@@ -107,10 +118,11 @@ enabled = true
 [plugins."unified-computer-use@openai-bundled"]
 enabled = true
 
-# GSD Agent Configuration — managed by gsd-core installer
-# GSD codex_hooks ownership: section
-
 [agents]
+enabled = true
+default_subagent_model = "gpt-6-luna"
+default_subagent_reasoning_effort = "high"
+max_concurrent_threads_per_session = 2
 max_depth = 1
 
 [hooks.state]
@@ -170,16 +182,10 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.901.51231"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/ryan/.codex/plugins/cache/openai-bundled/browser/26.901.51231/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.911.61220"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/ryan/.codex/plugins/cache/openai-bundled/browser/26.911.61220/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/ryan/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
-
-[mcp_servers.computer-use]
-command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
-args = ["mcp"]
-cwd = "."
-enabled = false
 
 [mcp_servers.atlassian-direct]
 url = "https://mcp.atlassian.com/v1/mcp/authv2"
@@ -187,6 +193,12 @@ url = "https://mcp.atlassian.com/v1/mcp/authv2"
 [mcp_servers.discord-personal]
 command = "/opt/homebrew/bin/node"
 args = ["/Users/ryan/Projects/discord-codex-runner/src/mcp.mjs"]
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
 
 [desktop]
 conversationDetailMode = "STEPS_PROSE"
@@ -198,3 +210,6 @@ selected-avatar-id = "dewey"
 [memories]
 generate_memories = true
 use_memories = true
+
+[notice.model_migrations]
+"gpt-5.6-sol" = "gpt-6-sol"
